@@ -60,7 +60,7 @@ HTTPS接続に、Windows標準のライブラリではなくOpenSSHライブラ�
 
 9. `Configuring the line ending conversions`:
 `Checkout Windows-style, commit Unix-style line endings`を選択。
-Windowsは改行コードがCRLFになっており、これをコミット時にUnix標準のLFに合わせてくれる。
+Windowsは改行コードがCRLFになっており、これをコミット時にUnix標準のLFに合わせてくれる。また、LFファイルをローカルに持ってくるときにはCRLFに変換して表示してくれる。
 
 10. `Configuring the terminal emulator to use with Git Bash`:
 `Use MinTTY ...`を選択。
@@ -128,7 +128,7 @@ git config --global merge.conflictStyle zdiff3
 ```
 デフォルトでは`merge`という設定になっている。これは個人の好みかも。
 
-## 設定の一覧
+## ここまでの設定一覧
 ここまでの「ダウンローダーでの設定」「初期設定」によってGit設定は以下のようになっている。
 ```bash
 $ git config -l
@@ -155,6 +155,7 @@ color.ui=auto
 push.default=current
 merge.conflictstyle=zdiff3
 ```
+ちなみにcore.autocrlfは、Windowsはtrueが良いが、MacやLinuxはinputが良い(trueにしない)。
 
 ## VScodeでのデフォルトターミナルをGit Bashにする
 1. VScode開く
