@@ -11,6 +11,10 @@ published: false # trueにすると投稿・更新される
 ## 本記事のモチベーション
 礒部研のHP載せる
 
+## ちょっとした用語
+- ローカル: 自分のPC内。作業をするところ。
+- リモート: ローカルの反対。ローカルの内容をアップロードするところ、最新状態をローカルに持ってくるところ。
+
 # Git, Githubを研究室に導入するメリット
 WIP🚧
 特に非情報系では、コードを書くけどGitを導入していない研究室も多いようです。
@@ -82,7 +86,7 @@ pull実行時(リモートの状態をローカルに取得する時)に、ロ�
 インストール後、デスクトップにGit Bashが追加されていればOK。
 また、`Git Bash`を開いて`git -v`を実行した際に`git version 2.49.0.windows.1`のように表示されていればOK。
 
-Windowsの標準ターミナルは`Power Shell`か`コマンドプロンプト`ですが、Unix系に慣れている場合 (Linux, bash/zsh/fish などに聞き覚えがある人) はターミナルとして普段から`Git Bash`を使うのも良いと思います。
+Windowsの標準ターミナルは`PowerShell`か`コマンドプロンプト`ですが、Unix系に慣れている場合 (Linux, bash/zsh/fish などに聞き覚えがある人) はターミナルとして普段から`Git Bash`を使うのも良いと思います。
 
 ## Gitの初期設定
 必要最低限の設定を登録するため、ターミナルを開きましょう。
@@ -91,7 +95,7 @@ Windowsの標準ターミナルは`Power Shell`か`コマンドプロンプト`�
 設定の優先度は local < global < system となっており、localはそのディレクトリ内でのみ有効な設定です。全体に適用したい場合は、基本的にglobalに登録すればOKです。
 
 localの場合、そのディレクトリ内の`.gitignore`ファイルに設定が書かれます。
-globalの場合、`~/.gitignore`ファイルに設定が書かれます。(パスの`~`は環境変数 $HOME のパスを表し、ターミナル起動時のパスになります。環境変数の値は`echo $HOME`で表示できます。)
+globalの場合、`~/.gitignore`ファイルに設定が書かれます。(パスの`~`は環境変数`$HOME`のパスを表し、ターミナル起動時のパスになります。環境変数の値は`echo $HOME`で表示できます。)
 
 1. ユーザ名、メールアドレス
 ```bash
@@ -158,7 +162,7 @@ merge.conflictstyle=zdiff3
 ちなみにcore.autocrlfは、Windowsはtrueが良いが、MacやLinuxはinputが良い(trueにしない)。
 
 ## VScodeでのデフォルトターミナルをGit Bashにする
-1. VScode開く
+1. VScodeを開く
 2. `shift cmd P`でコマンドパレットを開く
 3. `default: select default terminal`と入力して選択
 4. Git Bash を選択
@@ -175,6 +179,8 @@ merge.conflictstyle=zdiff3
 
 
 # Githubの始め方
+
+## ローカルのSSH設定
 
 
 # おわりに
