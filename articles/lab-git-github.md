@@ -3,7 +3,7 @@ title: "研究室のためのGit, Githubの始め方【Windows】"
 emoji: "🧪"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["研究", "git", "github", "入門"]
-published: true # trueにすると投稿・更新されるn
+published: false # trueにすると投稿・更新される
 ---
 # はじめに
 ## 本機序の対象読者
@@ -202,8 +202,12 @@ Githubは規約により、所属組織用のアカウントは1人に1つまで
 
 ## SSH設定
 Githubとのセキュアな通信のためにSSHを使用します。
+`Git Bash`を使用します。
 
 1. SSHキーを保存するディレクトリを作成
+```
+
+```
 
 2. SSHキーを作成して保存
 
