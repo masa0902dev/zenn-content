@@ -16,8 +16,8 @@ published: true # trueにすると投稿・更新される
 ✅ 得られるもの
 - `Windows OS`でのGit, Githubの導入方法
 - Gitの初期設定
-- SSH接続によってGithubと通信する
-- VScodeでGitを使う
+- SSH接続によってセキュアにGithubと通信する方法
+- VScodeでGitを使う方法
 
 ❌ 得られないもの
 - 実際に作業上でどうGit, Githubを使うか (次の記事で扱います)
