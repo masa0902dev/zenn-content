@@ -3,7 +3,7 @@ title: "研究室のためのGit, Githubの始め方【Windows】"
 emoji: "🧪"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["研究", "git", "github", "入門"]
-published: false # trueにすると投稿・更新される
+published: true # trueにすると投稿・更新されるn
 ---
 # はじめに
 ## 本機序の対象読者
@@ -182,14 +182,16 @@ merge.conflictstyle=zdiff3
 
 # Githubの始め方
 ## アカウントの作成
-1. こちらから: https://github.com
+1. こちらから`Sign In`でアカウント作成: https://github.com
 
 - Username, Emailは先ほどGitで設定したものと同じにするのが良いでしょう。
-- パスワードはセキュアなものを使いましょう。
-    - 推測しやすい値(氏名、誕生日など)を入れない
-    - 16文字以上にする
+- パスワードは必ずセキュアなものを使いましょう。
+    - 推測しやすい値(氏名、誕生日など)を入れない。
+    - 16文字以上にする。
     - 大文字と小文字、数字、記号を組み合わせる。
 
+2. 登録したら、Emailに認証メールが来るはずです。確認しましょう。
+認証が済んだら、アカウント作成完了です！
 
 :::message alert
 Githubは規約により、所属組織用のアカウントは1人に1つまでです。
@@ -197,9 +199,6 @@ Githubは規約により、所属組織用のアカウントは1人に1つまで
 (ただし、OSSコントリビュート用の個人アカウント・所属組織用のアカウント、のような複数アカウントの使い方は許容されているようです。)
 [複数のアカウントの管理](https://docs.github.com/ja/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-your-personal-account/managing-multiple-accounts)
 :::
-
-2. 登録したら、Emailに認証メールが来るはずです。確認しましょう。
-認証が済んだら、アカウント作成完了です！
 
 ## SSH設定
 Githubとのセキュアな通信のためにSSHを使用します。
@@ -216,12 +215,30 @@ Key Type: `Authentication Key`を選択
 ssh -T git@github.com
 ```
 ```
-# 接続が成功した際のメッセージ
+# 以下のようなメッセージが出ればSSH接続成功！
 Hi {your-name}! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
+## 2要素認証を設定する
+2要素認証によってセキュアにログインしましょう。
+組織(Organization)によっては２要素認証を必須にしているところも多いです。
+
+1. スマホなどに認証用アプリをダウンロード。
+`Microsoft Authenticator`など。
+
+2. Githubの画面右上のプロフィール画像をクリック
+3. `Settings`をクリック
+4. 左サイドバーの`Password and authentication`をクリック
+5. ページ真ん中あたりのセクション`Two-factor authentication`にて...
+Preferred 2FA method: `Authentiator app`を選択
+Two-factor methods: `Authenticator app`の`Edit`をクリックして説明に従う。(アプリでQRコードを撮影...)
+8. `Recovery Code`をダウンロードして、ローカルに保存しておく。
+リカバリーコードはアカウントに入れなくなった際に使用する。
+
+9. 設定を完了したら、セクション`Two-factor authentication`の右側に緑色`Enabled`が表示されているはず！
 
 ## 参考
+- [2 要素認証を設定する](https://docs.github.com/ja/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication)
 - [新しい SSH キーを生成して ssh-agent に追加する](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 - [GitHub アカウントへの新しい SSH キーの追加](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 - [Git GitHub の始め方（超入門）](https://qiita.com/mt-blue-sou/items/e28ae0b27a7911c302d5#github%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9)
@@ -229,4 +246,5 @@ Hi {your-name}! You've successfully authenticated, but GitHub does not provide s
 
 
 # おわりに
-次は「研究室のためのGit入門」でお会いしましょう。
+次は「研究室のためのGit入門」「研究室のためのGithub入門」で実践しましょう！
+（執筆中！）
