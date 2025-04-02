@@ -7,9 +7,11 @@ published: false # trueにすると投稿・更新される
 ---
 # はじめに
 ## 本機序の対象読者
+WIP🚧
 ## 本記事で得られるもの / 得られないもの
+WIP🚧
 ## 本記事のモチベーション
-礒部研のHP載せる
+WIP🚧
 
 ## ちょっとした用語
 - ローカル: 自分のPC内。作業をするところ。
@@ -17,7 +19,7 @@ published: false # trueにすると投稿・更新される
 
 # Git, Githubを研究室に導入するメリット
 WIP🚧
-特に非情報系では、コードを書くけどGitを導入していない研究室も多いようです。
+特に非情報系では、コードは書くがGitを導入していない研究室も多いようです。
 このセクションでは、下記のメリット２点をアピールします。
 - 開発体験の向上
 - プロジェクト管理
@@ -36,7 +38,7 @@ WIP🚧
 
 ## ダウンローダーでの設定
 設定の意味がよくわからない場合は、以下の設定に従えば安心です。
-基本的に後からの設定変更も可能です。
+後からの設定変更も可能です。
 
 3. `Select Components`:
 デフォルト状態から`Additional icons`を追加する。
@@ -90,9 +92,9 @@ Windowsの標準ターミナルは`PowerShell`か`コマンドプロンプト`�
 
 ## Gitの初期設定
 必要最低限の設定を登録するため、ターミナルを開きましょう。
-以降はGit Bashで実施します。
+以降は`Git Bash`を操作します。
 
-設定の優先度は local < global < system となっており、localはそのディレクトリ内でのみ有効な設定です。全体に適用したい場合は、基本的にglobalに登録すればOKです。
+git設定の優先度は local < global < system となっており、localはそのディレクトリ内でのみ有効な設定です。全体に適用したい場合は、基本的にglobalに登録すればOKです。
 
 localの場合、そのディレクトリ内の`.gitignore`ファイルに設定が書かれます。
 globalの場合、`~/.gitignore`ファイルに設定が書かれます。(パスの`~`は環境変数`$HOME`のパスを表し、ターミナル起動時のパスになります。環境変数の値は`echo $HOME`で表示できます。)
@@ -113,7 +115,7 @@ git config --global core.quotepath false
 git config --global color.ui auto
 ```
 基本はautoで十分。
-個別に色を設定したい場合は、`color.status`, `color.add`のように指定する。
+個別に色を設定したい場合は、`color.diff.meta "blue black"bold`のように指定する。
 
 4. ファイル名の大文字/小文字の変更を検知する
 ```bash
@@ -159,7 +161,7 @@ color.ui=auto
 push.default=current
 merge.conflictstyle=zdiff3
 ```
-ちなみにcore.autocrlfは、Windowsはtrueが良いが、MacやLinuxはinputが良い(trueにしない)。
+ちなみにcore.autocrlfは、Windowsはtrue推奨だが、MacやLinuxはinput推奨(trueにしない)。
 
 ## VScodeでのデフォルトターミナルをGit Bashにする
 1. VScodeを開く
@@ -179,8 +181,51 @@ merge.conflictstyle=zdiff3
 
 
 # Githubの始め方
+## アカウントの作成
+1. こちらから: https://github.com
 
-## ローカルのSSH設定
+- Username, Emailは先ほどGitで設定したものと同じにするのが良いでしょう。
+- パスワードはセキュアなものを使いましょう。
+    - 推測しやすい値(氏名、誕生日など)を入れない
+    - 16文字以上にする
+    - 大文字と小文字、数字、記号を組み合わせる。
+
+
+:::message alert
+Githubは規約により、所属組織用のアカウントは1人に1つまでです。
+
+(ただし、OSSコントリビュート用の個人アカウント・所属組織用のアカウント、のような複数アカウントの使い方は許容されているようです。)
+[複数のアカウントの管理](https://docs.github.com/ja/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-your-personal-account/managing-multiple-accounts)
+:::
+
+2. 登録したら、Emailに認証メールが来るはずです。確認しましょう。
+認証が済んだら、アカウント作成完了です！
+
+## SSH設定
+Githubとのセキュアな通信のためにSSHを使用します。
+
+1. SSHキーを保存するディレクトリを作成
+
+2. SSHキーを作成して保存
+
+3. SSHキー（公開鍵）をGithubに登録
+Key Type: `Authentication Key`を選択
+
+4. SSH接続をテスト
+```
+ssh -T git@github.com
+```
+```
+# 接続が成功した際のメッセージ
+Hi {your-name}! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+
+## 参考
+- [新しい SSH キーを生成して ssh-agent に追加する](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [GitHub アカウントへの新しい SSH キーの追加](https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+- [Git GitHub の始め方（超入門）](https://qiita.com/mt-blue-sou/items/e28ae0b27a7911c302d5#github%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9)
+- [WindowsでGitとSSHキーを使ってGitHubを安全に使う方法](https://zenn.dev/aoikoala/articles/388eb861249780)
 
 
 # おわりに
