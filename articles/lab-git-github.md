@@ -167,6 +167,8 @@ Githubの機能を使うことで、研究のTODOやバグ管理、ディスカ�
 設定の意味がよくわからない場合は、以下の設定に従えば安心です。
 後からの設定変更も可能です。
 
+(下記3.の`Select Components`が出るまではNextでOK)
+
 3. `Select Components`:
 デフォルト状態から`Additional icons`を追加する。
 デスクトップにGitのアイコンを追加する。
@@ -213,6 +215,7 @@ pull実行時(リモートの状態をローカルに取得する時)に、ロ�
 
 14. Nextをクリックでインストール開始！
 インストール後、デスクトップにGit Bashが追加されていればOK。
+
 また、`Git Bash`を開いて`git -v`を実行した際に`git version 2.49.0.windows.1`のように表示されていればOK。
 
 Windowsの標準ターミナルは`PowerShell`か`コマンドプロンプト`ですが、Unix系に慣れている場合 (Linux, bash/zsh/fish などに見覚えがある人) はターミナルとして普段から`Git Bash`を使うのも良いと思います。
@@ -223,8 +226,8 @@ Windowsの標準ターミナルは`PowerShell`か`コマンドプロンプト`�
 
 git設定の優先度は local < global < system となっており、localはそのディレクトリ内でのみ有効な設定です。全体に適用したい場合は、基本的にglobalに登録すればOKです。
 
-localの場合、そのディレクトリ内の`.gitignore`ファイルに設定が書かれます。
-globalの場合、`~/.gitignore`ファイルに設定が書かれます。(パスの`~`は環境変数`$HOME`のパスを表し、ターミナル起動時のパスになります。環境変数の値は`echo $HOME`で表示できます。)
+localの場合、そのディレクトリ内の`.gitconfig`ファイルに設定が書かれます。
+globalの場合、`~/.gitconfig`ファイルに設定が書かれます。(パスの`~`は環境変数`$HOME`のパスを表し、ターミナル起動時のパスになります。環境変数の値は`echo $HOME`で表示できます。)
 
 1. ユーザ名、メールアドレス
 ```bash
@@ -262,6 +265,13 @@ git config --global merge.conflictStyle zdiff3
 ```
 デフォルトでは`merge`という設定になっている。これは個人の好みかも。
 
+7. デフォルトブランチを再度 main に設定しとく
+```bash
+git config --global init.defaultbranch main
+```
+ダウンローダーでもmainにしましたが、ここでも設定しておきます。
+
+
 ## ここまでの設定一覧
 ここまでの「ダウンローダーでの設定」「初期設定」によってGit設定は以下のようになっている。
 ```bash
@@ -288,16 +298,24 @@ user.email=masa0902dev@gmail.com
 color.ui=auto
 push.default=current
 merge.conflictstyle=zdiff3
+init.defaultbranch=main
 ```
+(init.defaultbranchは master, main で2つありますが、mainが適用されるので大丈夫です。)
+
 ちなみにcore.autocrlfは、Windowsはtrue推奨だが、MacやLinuxはinput推奨(trueにしない)。
 
 ## VScodeでのデフォルトターミナルをGit Bashにする
+VScodeをインストールしていない場合はこちらの記事を参照
+https://www.kikagaku.co.jp/kikagaku-blog/visual-studio-code-windows
+
 1. VScodeを開く
-2. `shift cmd P`でコマンドパレットを開く
+2. `ctrl shift P`でコマンドパレットを開く
 3. `default: select default terminal`と入力して選択
 4. Git Bash を選択
 
-実際にVScodeのターミナルを開き、`git -v`でGitのバージョンが表示されることを確認してみましょう。
+一度VScodeを閉じてから、実際にVScodeのターミナルを開き、`git -v`でGitのバージョンが表示されることを確認してみましょう。ctrl J でターミナルを開けます。
+
+(もし、ターミナルがPowerShell等のままだと`git -v`でエラーが出るはずです。)
 
 
 ## 参考
@@ -311,7 +329,10 @@ merge.conflictstyle=zdiff3
 
 # 4. Githubの始め方
 ## アカウントの作成
-1. こちらから`Sign In`でアカウント作成: https://github.com
+
+https://github.com
+
+1. 上記リンクから`Sign Up`でアカウント作成
 
     - Username, Emailは先ほどGitで設定したものと同じにするのが良いでしょう。
     - パスワードは必ずセキュアなものを使いましょう。
@@ -342,10 +363,10 @@ mkdir ~/.ssh
 ```
 ssh-keygen -t ed25519 -C "GitHubに登録したメールアドレス"
 
-Enter file in which to save the key (/c/Users/your-name/.ssh/id_ed25519):
--> EnterでOK
-Enter passphrase (empty for no passphrase):
--> EnterでOK
+# Enter file in which to save the key (/c/Users/your-name/.ssh/id_ed25519):
+# -> EnterでOK
+# Enter passphrase (empty for no passphrase):
+# -> EnterでOK
 ```
 `id_ed25519.pub`が公開鍵（Githubなどに登録するキー）、`id_ed25519`が秘密鍵（自分のローカルのみに置いておくキー）。
 
@@ -365,9 +386,10 @@ https://www.cryptrec.go.jp/list.html
 :::
 
 5. 公開鍵をコピー
-下記コマンドで表示される文字列を全てコピー。
+表示される文字列を全てコピー。下記の`pbcopy`コマンドを使えば自動でコピーしてくれる。
+pbcopyコマンドが無い(エラーが出る)場合は手動でコピーする。
 ```
-cat ~/.ssh/id_ed25519.pub
+cat ~/.ssh/id_ed25519.pub | pbcopy
 ```
 
 6. SSHキー（公開鍵）をGithubに登録
@@ -386,6 +408,7 @@ cat ~/.ssh/id_ed25519.pub
 ssh -T git@github.com
 
 # 以下のようなメッセージが出ればSSH接続成功！
+# ただし Github, Git でusernameが違うと追加で(yes/no/[fingerprint])のような選択肢が出ます。yesでOKです。
 Hi {your-name}! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
@@ -405,7 +428,8 @@ Two-factor methods: `Authenticator app`の`Edit`をクリックして説明に�
 13. `Recovery Code`をダウンロードして、ローカルに保存しておく。
 リカバリーコードはアカウントに入れなくなった際に使用する。
 
-設定が完了したら、セクション`Two-factor authentication`の右側に緑色`Enabled`が表示されているはず！
+確認のため、Sign Out (画面右上のプロフィール画像クリック) してから Sign In してみましょう。
+その際にワンタイムパスワードを求められれば、2要素認証の設定完了です🎉
 
 ## 参考
 - [2 要素認証を設定する](https://docs.github.com/ja/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication)
