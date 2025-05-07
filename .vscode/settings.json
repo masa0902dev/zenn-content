@@ -1,0 +1,19 @@
+{
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    // エディタ上部に表示されるアウトライン？の設定（stickyScroll）
+    "editor.stickyScroll.enabled": false
+    // "editor.stickyScroll.maxLineCount": 2,
+  },
+  "[json]": {
+    "editor.tabSize": 2
+  }
+}
