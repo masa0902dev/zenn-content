@@ -1,14 +1,21 @@
 {
-  "[markdown]": {
+  "[markdown,latex]": {
     "editor.wordWrap": "on",
-    "editor.quickSuggestions": {
-      "comments": "off",
-      "strings": "off",
-      "other": "off"
-    },
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
+
+    "editor.quickSuggestions": {
+      // スニペットを使うためにサジェスチョンを有効にする (種類はコード位置や種類の話)
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    },
+    "editor.snippetSuggestions": "top", // スニペットを優先的に表示
+    "editor.suggest.showSnippets": true,
+    "editor.suggest.showWords": false, // 単語ベースのサジェスチョンを無効にする
+    "editor.suggestOnTriggerCharacters": true,
+
     // エディタ上部に表示されるアウトライン？の設定（stickyScroll）
     "editor.stickyScroll.enabled": false
     // "editor.stickyScroll.maxLineCount": 2,
