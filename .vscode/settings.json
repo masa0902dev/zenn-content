@@ -1,5 +1,6 @@
+// "[markdown,latex]"の書き方は無効になった（ファイルがエラーになって設定が適用されなくなってると思われる）。
 {
-  "[markdown,latex]": {
+  "[markdown]": {
     "editor.wordWrap": "on",
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
@@ -20,6 +21,28 @@
     "editor.stickyScroll.enabled": false
     // "editor.stickyScroll.maxLineCount": 2,
   },
+  "[latex]": {
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+
+    "editor.quickSuggestions": {
+      // スニペットを使うためにサジェスチョンを有効にする (種類はコード位置や種類の話)
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    },
+    "editor.snippetSuggestions": "top", // スニペットを優先的に表示
+    "editor.suggest.showSnippets": true,
+    "editor.suggest.showWords": false, // 単語ベースのサジェスチョンを無効にする
+    "editor.suggestOnTriggerCharacters": true,
+
+    // エディタ上部に表示されるアウトライン？の設定（stickyScroll）
+    "editor.stickyScroll.enabled": false
+    // "editor.stickyScroll.maxLineCount": 2,
+  },
+
   "[json]": {
     "editor.tabSize": 2
   }
