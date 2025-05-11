@@ -14,6 +14,9 @@ settings.jsonで`"[markdown,latex]"`の書き方をすると（おそらくエ�
 cmd+M : $$
 cmd+alt+M : $$\n$$
 
+## zenn preview for github.dev
+command pallet -> Show zenn Preview
+VScode内でzennプレビューを閲覧できる。タブでサイドバー移動できる。
 
 
 # Zenn CLI
