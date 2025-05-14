@@ -108,6 +108,23 @@ def insert_space_before_prefecture(text):
     return result
 
 
+def parse_data_from_text(text: str) -> list[list[str | int]]:
+    lines = text.split('\n')
+    data = []
+    for line in lines:
+        # 4桁かつコンマのついた文字列も読み取れる正規表現
+        match = re.match(r'^(\d+)\s+([^\s]+)\s+.*?([\d,]+)\s*$', line)
+        if match:
+            id_, pref, num = match.groups()
+            number = int(num.replace(',', ''))
+            data.append([pref, number])
+            if int(id_) == 47:
+                break
+    for i in range(len(data)):
+        data[i].insert(0, prefectures_en[i])
+    return data
+
+
 def main():
     if not os.path.exists(pdf_file_path):
         print(f"PDF not found: {pdf_file_path}")
@@ -126,26 +143,10 @@ def main():
         except Exception as e:
             print("ERROR: reading pdf file:", e)
             return
-
     text = insert_space_before_prefecture(text)
+    
+    data = parse_data_from_text(text)
 
-    lines = text.split('\n')
-    data = []
-
-    for line in lines:
-        # 4桁かつコンマのついた文字列も読み取れる正規表現
-        match = re.search(r'^(\d+)\s+([^\s]+)\s+.*?([\d,]+)\s*$', line)
-        if match:
-            id, prefecture, number = match.groups()
-            number = int(number.replace(',', ''))
-            data.append([prefecture, number])
-            if int(id) == 47:
-                break
-    for i in range(len(data)):
-        data[i].insert(0, prefectures_en[i])
-
-    # その後の書き込み処理など………
-    # その後の書き込み処理など………
     # その後の書き込み処理など………
 
 
@@ -226,18 +227,21 @@ def is_target_page(text: str) -> bool:
 
 ## 4. 正規表現などでデータを抽出
 ```py
-lines = text.split('\n')
-data = []
-
-for line in lines:
-    # 4桁かつコンマのついた文字列も読み取れる正規表現
-    match = re.search(r'^(\d+)\s+([^\s]+)\s+.*?([\d,]+)\s*$', line)
-    if match:
-        id, prefecture, number = match.groups()
-        number = int(number.replace(',', ''))
-        data.append([prefecture, number])
-        if int(id) == 47:
-            break
+def parse_data_from_text(text: str) -> list[list[str | int]]:
+    lines = text.split('\n')
+    data = []
+    for line in lines:
+        # 4桁かつコンマのついた文字列も読み取れる正規表現
+        match = re.match(r'^(\d+)\s+([^\s]+)\s+.*?([\d,]+)\s*$', line)
+        if match:
+            id_, pref, num = match.groups()
+            number = int(num.replace(',', ''))
+            data.append([pref, number])
+            if int(id_) == 47:
+                break
+    for i in range(len(data)):
+        data[i].insert(0, prefectures_en[i])
+    return data
 ```
 Pythonでの正規表現の扱い方(reモジュール)は、こちらの記事がわかりやすいと思います。
 https://note.nkmk.me/python-re-match-search-findall-etc/
@@ -260,7 +264,7 @@ https://zenn.dev/seiya0/articles/tech-regular-expression
 # おわりに
 Pythonとpypdfを用いた、PDFの表示形式の変更への対策を紹介しました。
 
-そもそも、データの置き方・データ形式が利用しやすいものであれば、考えなくて済むことなのですが…そうではないモノも中にはあるので、致し方ないですね…。
+そもそも、データの置き方・データ形式が利用しやすいものであれば考えなくて済むことなのですが…そうではないモノも中にはあるので、致し方ないですね…。
 
 :::message
 **[もし非エンジニアの方が読まれていたら]** どんなデータ形式がいいの？
