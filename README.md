@@ -1,6 +1,11 @@
 # masa's Zenn Article & Books
 [HOME](https://zenn.dev/masa0902dev)
 
+```bash
+npx zenn new:article --slug 記事のスラッグ
+```
+- slugは記事・本ごとにユニークに。他ユーザーの記事で使用済みのslugも使用できない！
+- slugを変えると別の投稿として作成される！
 
 
 # Markdown & Latex
