@@ -144,7 +144,7 @@ def main():
             print("ERROR: reading pdf file:", e)
             return
     text = insert_space_before_prefecture(text)
-    
+
     data = parse_data_from_text(text)
 
     # その後の書き込み処理など………
@@ -266,8 +266,7 @@ Pythonとpypdfを用いた、PDFの表示形式の変更への対策を紹介し
 
 そもそも、データの置き方・データ形式が利用しやすいものであれば考えなくて済むことなのですが…そうではないモノも中にはあるので、致し方ないですね…。
 
-:::message
-**[もし非エンジニアの方が読まれていたら]** どんなデータ形式がいいの？
+:::details もし非エンジニアの方が読まれていたら: どんなデータ形式がいいのか？
 
 **機械的にそのデータを利用する・特に数値的なデータの場合**、私はこう思います。
 
