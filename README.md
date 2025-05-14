@@ -18,6 +18,9 @@ cmd+alt+M : $$\n$$
 command pallet -> Show zenn Preview
 VScode内でzennプレビューを閲覧できる。タブでサイドバー移動できる。
 
+## PDF preview
+- alt up/down : ページ移動
+- alt shift G : ページ数へ移動
 
-# Zenn CLI
-* [📘 How to use](https://zenn.dev/zenn/articles/zenn-cli-guide)
+## user dict
+ノート中に変換がうまくいかないものがあればNoteにメモって、あとで`my-mac-settings`ディレクトリでまとめて辞書追加する。
