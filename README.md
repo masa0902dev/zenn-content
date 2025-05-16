@@ -1,6 +1,8 @@
 # masa's Zenn Article & Books
 [HOME](https://zenn.dev/masa0902dev)
 
+- 勉強ノートは、ノートしてからGPTにまとめてもらうと良い。
+
 ```bash
 npx zenn new:article --slug 記事のスラッグ
 ```
@@ -29,3 +31,6 @@ VScode内でzennプレビューを閲覧できる。タブでサイドバー移�
 
 ## user dict
 ノート中に変換がうまくいかないものがあればNoteにメモって、あとで`my-mac-settings`ディレクトリでまとめて辞書追加する。
+
+## latex
+vectorは`\bold{v_i}`でいける: $\bold{v_i}$
