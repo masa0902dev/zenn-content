@@ -126,16 +126,224 @@ MDならふつう、微小刻み時間で差分化して粒子の起動を逐次
 粒子同士の衝突での速度変化にはニュートン則。剛体円盤同士の衝突は弾性衝突(e=1)となる。同じ質量なら、結果的にこうなる。
 
 $$
-\bold{v'_i} = \bold{v_i} - [\bold{v_{ij}} \cdot \bold{n}] \bold{n}
+\begin{align}
+   \bold{v'_i} &= \bold{v_i} - [\bold{v_{ij}} \cdot \bold{n}] \bold{n} \\
+      &= \bold{v_i} - \frac{b}{\sigma_{ij}^2} \bold{r_{ij}} \\
+
+    \bold{v'_j} &= \bold{v_j} + \frac{b}{\sigma_{ij}^2} \bold{r_{ij}}
+\end{align}
 $$
-ただし、v'は衝突後の速度、v_jiは相対速度、nは衝突面の法線ベクトル。
+
+$$
+variables: \\
+\begin{align}
+\bold{v_{ij}} &= \bold{v_i} - \bold{v_j} \\
+\bold{r_{ij}} &= \bold{r_i} - \bold{r_j} \\
+b &= \bold{v_{ij}} \cdot \bold{r_{ij}} \\
+\sigma_{ij} &= \sigma_i + \sigma_j = (iの半径) + (jの半径) \\
+\bold{n} &= \frac{\bold{r_{ij}}}{|\bold{r_{ij}}|} = (衝突面の法線ベクトル) \\
+\end{align}
+$$
 
 ### ECMC
+MC（MCMC）ではふつう、乱数で移動させてオーバーラップが生じたらその試行をリジェクトする。一方ECMCでは、アクティブ粒子（変位を行う粒子）は他粒子と衝突するまで変位し、衝突された粒子が次のアクティブ粒子になる。これによりリジェクションフリーでのMCを実現している。衝突ごとに系を発展させるため、これはEvent Drivenである。
+
+ECMCの基となっている考え：変位試行ベクトルΔxの大きさδを無限小にして、一定方向の無限回の試行を行えば、衝突するまでの全ての試行がアクセプトされる。（ここではハード系を扱っているので、衝突のみをイベントとして扱えば良い。しかし、ソフト系では小さな変位を重ねる必要がある）
+
+基本的に、試行がある条件に達したら、再度全粒子からランダムにアクティブ粒子を選ぶ。粒子のランダム選択から次のランダム選択までの繰り返しにより生じる粒子衝突の連鎖のことをイベント鎖（Event-Chain）と呼ぶ。このイベント鎖の長さ$L_c$をイベント鎖長という。
+
+ECMCには、衝突後の変位の向きの決め方によって幾つか種類がある。
+
+アルゴリズム：
+1. 全粒子からランダムにアクティブ粒子iを選び、そのイベント鎖での変位の向きを決定する（ずっと+xとか）。
+2. 別の粒子jと衝突するまでアクティブ粒子iを変位させる
+3. jをアクティブ粒子にする
+4. 2~3を繰り返し、粒子変位の和がある値Lcに達したら1に戻る
+
+#### 例）SEC（Straight ECMC）
+直線イベント鎖モンテカルロ法。ECMCで最も単純で、変位の向きを「ずっとθ=60°方向」「ずっと+x方向」のようにする。
+一般的には、ECMCといえばSECを指すことが多い。変位を+x,+y (+z)方向のみにした方法はSEC-xy（ECMC-xy）、全方向からランダムに向きを決める手法をSEC-all（ECMC-all）と呼ぶことが多い。
+
+SEC-xyの場合、不可逆MCとなる（時間的に不可逆）。
+MCで可逆であるとは「逆遷移が同じ確率で可能」であること。$P(X\rightarrow Y) = P(Y\rightarrow X)$
+
+**time-reversal symmetry, TRS (時間反転対称性)**: ある物理過程において、$t \rightarrow -t$した時に物理法則や運動方程式の形式が変わらなければTRSを持つ。
+確率遷移としては、$P(X(t+\Delta t)|X(t)) = P(X(t-\Delta t)|X(t))$ならTRSを持つ。
+たとえばエントロピー増大則は時間の一方向性を示すものなので、TRSの破れがある（微視的にはTRSを持ち、統計的にはTRSが破れている）。
+
+つまりSEC-xyが不可逆MCであるのは、一方向性（xで+xのみ、yで+yのみ）を持ち、時間反転した時に-x, -yとならないから。（そのイベントチェーンでx方向に変位するときに+x,-x方向のいずれかを等確率で選ぶのなら、TRSは保たれる。）
+
+#### Detailed Balance と Global Balance
+TRSに関連して、DB（詳細釣り合い）とGB（全体釣り合い）も触れる。
+
+$$
+% ~ で半角スペース。\quadで1emスペース。
+\begin{align}
+&DB ~ rule: \pi(x) P(x \rightarrow y) = \pi(y) P(y \rightarrow x) \\
+&GB ~ rule: \sum_{y}{\pi(y) P(y \rightarrow x)} = \pi(x)
+\end{align}
+$$
+
+π(x)は、状態xの平衡分布（ボルツマン分布など）
+
+DB: 状態xとyの間で、行きと帰りの遷移確率が揃っている。TRSが成り立つ。
+GB: 各状態の確率流の出入りが揃っている。（上式では、状態xへ至る全ての遷移の確率の和が、xの平衡分布となっている）
+
+例えばMetropilis法 $P(x \rightarrow y) = \min(1, \frac{\pi(y)}{\pi(x)})$ では、DBが満たされている（よってGBは満たされる）。
+例えばECMC-xでは、DBは破れているが、GBは成り立っている。（DB ruleは$\pi(x) \cdot 1 = \pi(y) \cdot 0$となり一般には成り立たない。）
+
+DBは正しい平衡分布の十分条件であり、GBは正しい平衡分布の必要条件である。
+可逆なものに対して少しでも可逆性を破ると、分布の収束は必ず速くなることが証明されている
 
 
 ### NEC
-ECMCの発展版。性質がECMCとは異なる。
+ECMCの発展版。性質がECMCとは異なるため注意。
+効率的な平衡化のために、ニュートン力学的要素として、初期化時に粒子に速度ベクトルを与える（Maxwell-Boltzmann分布が多い）。変位の向きは各粒子の速度ベクトルに従い、衝突時には衝突則を適用。イベント鎖長には単位を時間としてTcを用いる。
+
+イベントチェーンの単位に長さLcを用いると、遅い/速い粒子を多く含むイベントチェーンでは刑の時間の進む早さが異なってしまう。なのでNECではTcが適切。
+
+NECは、剛体球系での平衡系における拡散係数，核生成率，および融解過程の平衡状態に達するまでの効率において，EDMDやECMCを上回ることがわかっている．
+また，NECは再始動なしでも系を平衡緩和させることができる．ただし，再始動なしで必ず全ての系を平衡緩和させられるわけではない．再始動なし（Tc->∞）とする場合が，最も拡散効率が高くなる例もある（D.Mugita 2024）．
+
+:::details 衝突時の速度更新コード例（Golang）
+今回はGonumを使うと、圧倒的に遅くなった。（3次元ベクトル）
+理由は、BLAS/LAPACKは小さい行列・ベクトルの場合はオーバーヘッドの方が大きくなるから？また、Gonumが巨大なパッケージであるために生じるオーバーヘッドもある？
+
+テストの結果: 下記の純粋なGoで60ns/op, gonum/matのVecDenseで(ある程度メモリ割り当てを節約しても) 370ns/opだった。(Macbook m2, メモリ16GB, CPU 8core, GPU未使用)
+
+粒子数を512^2、1粒子がアクティブになった平均回数が10^7になるまでやるとすると、1シミュレーションで$310ns * 10^{-9} * (512^2 * 10^7) \sim 8.6 * 10^5s \sim 240h = 10day$の違いになる。
+```go
+// obj/particle.go
+package obj
+
+import (
+ "fmt"
+
+ "github.com/masa0902dev/purego-harddisk-sim/util"
+)
+
+type Particle struct {
+ ID     int
+ Pos    *[]float64
+ Vel    *[]float64
+ Radius float64
+}
+
+// pi: collider, pj: collidee
+func UpdateColVel(pi, pj *Particle) {
+ rij := util.Vecsub(*pi.Pos, *pj.Pos)
+ vij := util.Vecsub(*pi.Vel, *pj.Vel)
+ b := util.Vecdot(vij, rij)
+
+ sigma := pi.Radius + pj.Radius
+ scale := b / sigma
+ diff := util.Vecscale(rij, scale)
+
+ util.VecsubP(pi.Vel, diff)
+ util.VecaddP(pj.Vel, diff)
+}
+
+func LogParticle(p *Particle) {
+ fmt.Printf("------ ID: %v ------\n", p.ID)
+ fmt.Printf("Pos: %v\n", p.Pos)
+ fmt.Printf("Vel: %v\n", p.Vel)
+ fmt.Printf("Radius: %v\n", p.Radius)
+}
+
+```
+
+```go
+// util/vector.go
+package util
+
+func Vecsub(a, b []float64) []float64 {
+ sub := make([]float64, len(a))
+ for i := range a {
+  sub[i] = a[i] - b[i]
+ }
+ return sub
+}
+func VecsubP(a *[]float64, b []float64) {
+ for i := range *a {
+  (*a)[i] -= b[i]
+ }
+}
+
+func Vecadd(a, b []float64) []float64 {
+ add := make([]float64, len(a))
+ for i := range a {
+  add[i] = a[i] + b[i]
+ }
+ return add
+}
+func VecaddP(a *[]float64, b []float64) {
+ for i := range *a {
+  (*a)[i] += b[i]
+ }
+}
+
+func Vecdot(a, b []float64) float64 {
+ dot := 0.0
+ for i := range a {
+  dot += a[i] * b[i]
+ }
+ return dot
+}
+
+func Vecscale(a []float64, s float64) []float64 {
+ scaled := make([]float64, len(a))
+ for i := range a {
+  scaled[i] = a[i] * s
+ }
+ return scaled
+}
+
+```
+:::
 
 
 ## PBC: 周期境界条件
 periodic boundary condition.
+そもそもPBCを用いるモチベーションは，シミュレーションで現実的に扱える粒子数が現実世界よりも非常に小さいことに起因する．現実並みに多くの粒子（アボガドロ数6.0*10^23個のオーダー）を扱えるのなら，表面効果（系が壁面で囲まれている場合に生じる，壁面が周囲粒子に影響して結果的に粒子全体に力を与える現象）は十分小さいので無視してもよい場合が多い．しかしその粒子数は現実的でないため，表面効果の影響が大きくなってしまう．そこで，表面効果の影響を小さくするためPBCを用いる．
+
+RES: PBCを用いた場合・動かない剛体壁を用いた場合で，どのくらい物理量に差がでる？システムサイズにどのくらい依存する？表面効果の影響度の大きさはN^{-1}に比例かな？
+
+少ない粒子数で大きな系の物性を近似する手法．着目している系内の粒子数は常に保存される．
+
+
+## MSD, D
+mean square displacement: 平均二乗変位．粒子の拡散度合いを表す．
+
+$$
+MSD = \frac{1}{N} \sum_{i=1}^{N} |\bold{r_i}(t) - \bold{r_i}(0)|^2 = \langle |\bold{r_i}(t) - \bold{r_i}(0)|^2 \rangle
+$$
+
+**時間tが小さい時は$MSD \propto t^2$となる．**
+なぜなら…tが小さい時で粒子変位$r_i(t) - r_i(0)$をマクローリン展開すれば$v_i(0) t$に近似でき，エネルギー等分配則$\frac{\ddot{d}}{2} k_b T = \frac{1}{2} m \langle v^2 \rangle$を用いて式変形すれば，$\langle |\bold{r_i}(t) - \bold{r_i}(0)|^2 \rangle \approx \langle |\bold{v}(t)|^2 \rangle t^2 = \frac{\ddot{d} k_b T}{m} t^2$を得るから．
+ただし，$\ddot{d}$は次元，$k_b$はボルツマン定数．
+
+**次に，時間tが大きい場合は$MSD \propto t$となる．**
+なぜなら…（省略．拡散方程式 $\frac{\partial P(x,t)}{\partial t} = D \frac{\partial^2 P(x, t)}{\partial x^2}$ を変形・条件付けすると最終的に $\langle x^2(t) \rangle = 2Dt$が得られて，これを$\ddot{d}$次元へ拡張すると $\langle |\bold{r}(t) - \bold{r}(0)|^2 \rangle = 2 \ddot{d} D t$が得られるから．）
+Dは拡散係数(diffusion coefficient)であり，大きいほど粒子は拡散していると見做せる．
+
+
+## 配向秩序変数
+orientational order parameter
+
+（そもそも，）order parameter: 秩序変数．相の秩序状態を表す．秩序-無秩序相転移を調べるためによく使われる．0~1の値を取り，1に近いほど系に秩序がみられる・0に近いほど系に秩序が見られないと設定されることが多い．
+
+秩序状態：例えば，粒子が格子状にならぶ，粒子の向きやスピンが揃っている，粒子の密度が周期的，などなどの空間的・構造的な規則性，対称性のこと．
+位置秩序，配向秩序（粒子の向き・スピンが揃っている），トポロジカル秩序（幾何的には無秩序でもトポロジー的特徴がある），時間的秩序（時間的な周期や構造がある）などがある．
+
+配向秩序変数は，結晶の回転対称性に関する値．系の液相-結晶相 間の相転移の性質を知れる．
+粒子iについての**ミクロな**配向秩序変数は下記．（ローカル・グローバル配向秩序変数の元になる）
+
+$$
+\phi_6^i = \frac{1}{N_i} \sum_{j=1}^{N_i} \exp{(6 \mathrm{i} \theta_i^j)}
+$$
+
+実際に値として評価する際には，その大きさ$|\phi_6^i|$で評価する．大きさが一に近いほど
+
+$$
+|\phi_6^i| = \sqrt{|\phi_6^i|^2} = \sqrt{\phi_6^i \cdot \phi_6^{i*}} = \sqrt{a_i^2 + b_i^2}
+$$
