@@ -11,7 +11,10 @@ published: true # trueにすると投稿・更新される
 - **共同研究プロジェクトを開始, 効率化したい人**
 - **研究のドキュメントを整理したい人**
 - **研究室にGit, Githubを導入したい大学教員, 学生**
-- Git, Githubを聞いたことはあるが使ったことはない人
+- Git, Githubは知っているが使ったことはない人
+
+「そもそもGitとGitHubって何？」という方は，こちらの記事のイントロが分かりやすいです．
+https://zenn.dev/getgotgoto/articles/506bcfbcd55149
 
 ## 本記事で得られるもの / 得られないもの
 ✅ 得られるもの
@@ -36,11 +39,10 @@ published: true # trueにすると投稿・更新される
 
 これらニーズを解決するため、研究室への Git, Github および Github Organization の導入を提案しました。研究室教員の方は新しい方法や技術に対して寛容で、ご協力いただけたため、導入が実現しました。
 
-⬇️ 本研究室のGithub Organization (まだまだ整備中！)
+⬇️ 本研究室のGithub Org (まだまだ整備中！)
 
 https://github.com/isobe-lab
 
-<!-- TODO: isobe-labのHPを載せたい。isobeTに聞いてみる -->
 
 
 ## 知っておいてほしい用語
@@ -445,8 +447,7 @@ Two-factor methods: `Authenticator app`の`Edit`をクリックして説明に�
 
 設定が完了したら、ハンズオン記事の「研究室のためのGit入門ハンズオン」「研究室のためのGithub入門ハンズオン」で実践し、コード開発やプロジェクト運営の品質向上・効率化を実現していきましょう！
 
-- 執筆中🚧「研究室のためのGit入門ハンズオン」
-- 執筆中🚧「研究室のためのGithub入門ハンズオン」
+- 執筆中🚧「研究室のためのGit,GitHub入門ハンズオン」
 
 Github Organization (組織) の導入はこちら↓
 
