@@ -3,7 +3,7 @@ title: "研究室のためのGit,GitHub入門ハンズオン"
 emoji: "🌟"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["研究", "git", "github", "入門"]
-published: false
+published: true
 ---
 
 # 0. はじめに
