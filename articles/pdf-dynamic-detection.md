@@ -3,7 +3,7 @@ title: "形式がよく変わるPDFから動的にデータ抽出する【Python
 emoji: "📈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["pdf", "python", "pypdf"]
-published: false # 平田tに確認とってからtrueにすること！
+published: true
 ---
 
 # はじめに
