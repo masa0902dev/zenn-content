@@ -9,45 +9,49 @@ published: false # 平田tに確認とってからtrueにすること！
 # はじめに
 ## 何がわかる？
 - ✅ わかること
-  - PDFからのテキストデータの抽出方法。
-  - PDFの形式がよく変わる場合に、どのように対象ページを動的に決定するか。
+  - PDFからのテキストデータの抽出方法．
+  - PDFの形式がよく変わる場合に，どのように対象ページを動的に決定するか．
 
 - ❌ わからないこと
-  - 目的ページ自体の形式が変わる場合の対応（例: 表の形式が大幅に変わるなど）
+  - 対象ページ自体の形式が変わる場合の対応（例: 表の形式が大幅に変わるなど）
   - PDFからの画像の読み取り方法
 
 ## 要約
-- PyPDF2ではなくpypdfを使おう。
-  - 理由: PyPDF2はもうメンテナンスされていないから。また、pypdfの方が表形式などに優れているから。
-- PDF全ページを走査して、キーワードのinclude / excludeをチェックすることで対象ページを決定する。
+- PDF全ページを走査して，キーワードのinclude/excludeをチェックすることで対象ページを決定する．
+- PyPDF2ではなくpypdfを使おう．(PyPDF2はもうメンテナンスされていないから．また，pypdfの方が読み取りが優れているから．)
 
 ## 記事のモチベーション
 https://heatstroke.jp/
 
-著者は[熱中症搬送者数予測サイト](https://heatstroke.jp)を技術補佐員として開発しており、こちらの2025年プレスリリースが迫ってきました。そんな時、外部データを取得しているGithub ActionsのFailed通知がDiscordに！
+著者は[熱中症搬送者数予測サイト](https://heatstroke.jp)を技術補佐員として開発しており，05/28に2025年版プレスリリースが公開されました．その1週間ほど前，外部データを取得しているGithub ActionsのFailed通知が突如Discordに！
 
-原因は、[総務省消防庁のサイト](https://www.fdma.go.jp/disaster/heatstroke/post3.html)から取得している週報PDF（搬送者数の速報実測値）の表示の形式が変わったことでした。目的のPDFページの内容自体はあまり変わっていなかったため、形式変更への対策として、対象ページを動的に決定する方法を実装しました。
+原因は，[総務省消防庁のサイト](https://www.fdma.go.jp/disaster/heatstroke/post3.html)から取得している週報PDF（搬送者数の速報実測値）の形式が変わったことでした．PDFの対象ページの内容自体はあまり変わっていなかったため，今後の形式変更への対策として，対象ページを動的に決定する方法を実装しました．
 
 :::details 熱中症搬送者数予測サイトについて
-予測値は06/01から生成されます！
-熱中症対策の目安としてご利用ください。2025年からは47都道府県に対応しています。
+予測値は05/21から生成されています！
+熱中症対策の目安としてご利用ください．2024年は10都道府県のみでしたが，2025年からは47都道府県に対応しています．
 
-<br />
+2025年時点での関連主要論文は下記のとおりです．
+詳細は，[こちらのプレスリリース](https://www.nitech.ac.jp/news/press/2025/12908.html)をご参照ください．
+1. 47都道府県における推定および地方における推定誤差
+T. Matsuura, S. Kodera, and A. Hirata, “Predicting Heat-related Morbidity in Japan through Integrated Meteorological and Behavioral Factors,” Environmental Challenges, vol. 18, article no. 101106, 2025.
+2. 8都道府県における推定
+A Takada, S Kodera, K Suzuki, M Nemoto, A Hirata, "Estimation of the number of heat illness patients in eight metropolitan prefectures of Japan: Correlation with ambient temperature and computed thermophysiological responses," Frontiers in Public Health 11, 1061135, 2023.
+3. 名古屋市における推定
+T. Nishimura, E. A. Rashed, S Kodera, H. Shirakami, R. Kawaguchi, K Watanabe, M. Nemoto, A. Hirata, “Social implementation and intervention with estimated morbidity of heat-related illnesses from weather data: a case study from Nagoya City, Japan,” Sustainable Cities and Society 74, 103203, 2021
+4. 高齢者搬送者数の推定
+S Kodera, T Nishimura, EA Rashed, K Hasegawa, I Takeuchi, R Egawa, A. Hirata, “Estimation of heat-related morbidity from weather data: A computational study in three prefectures of Japan over 2013-2018,” Environment international 130, 104907, 2019
 
-2024年時点での関連主要論文は下記のとおりです。
-最新情報は、06/01頃に公開されるプレスリリースをご覧ください。
-1. A Takada, S Kodera, K Suzuki, M Nemoto, A Hirata, "Estimation of the number of heat illness patients in eight metropolitan prefectures of Japan: Correlation with ambient temperature and computed thermophysiological responses," Frontiers in Public Health 11, 1061135, 2023.
-2. S Kodera, T Nishimura, EA Rashed, K Hasegawa, I Takeuchi, R Egawa, A. Hirata, "Estimation of heat-related morbidity from weather data: A computational study in three prefectures of Japan over 2013-2018," Environment international 130, 104907, 2019.
-
-<br />
-
-「熱中症搬送者数予測サイト」に関するメディアや文章画像利用などのお問い合わせは、以下ページの「お問い合わせフォーム」からお願いいたします。
+<br>
+「熱中症搬送者数予測サイト」に関するメディアや文章画像利用などのお問い合わせは，以下ページの「お問い合わせフォーム」からお願いいたします．
 https://heatstroke.jp/disclaimer.html
 
 出典:
 名古屋工業大学　平田・小寺研究室
-[https://heatstroke.jp](https://heatstroke.jp) (2025/05/15に利用)
+[https://heatstroke.jp](https://heatstroke.jp) (2025/05/29に利用)
 :::
+
+
 
 # 使用した言語・ライブラリ
 - lang: Python v3.12.7
@@ -55,12 +59,11 @@ https://heatstroke.jp/disclaimer.html
 
 https://github.com/py-pdf/pypdf
 
-※ 今回は表なので、pypdfよりもpdfplumberの方が良かったかも。
-https://github.com/jsvine/pdfplumber
+
 
 # コード例と説明
 ## 0. コード全体
-要旨のコードの全体像です。
+要旨のコードの全体像です．
 
 :::details 要旨の全体コード
 ```py
@@ -177,12 +180,12 @@ with open(pdf_file_path, 'rb') as file:
         print("ERROR: reading pdf file:", e)
         return
 ```
-- PDFファイルの存在確認、データが取れてなくて0byteの場合のエラー処理。
+- exists()でPDFファイル存在確認，getsize()でデータが取れてなくて0byteの場合を検知．
 <br />
-- pdfはバイナリデータなので'r'ではなく'rb'で開く。
-- PdfReaderオブジェクトのreaderを作成し、対象ページを取得する関数get_target_page_text()に渡す。
+- pdfはバイナリデータなので'r'ではなく'rb'で開く．
+- PdfReaderオブジェクトのreaderを作成し，対象ページを取得する関数get_target_page_text()に渡す．
 
-## 2. PDFの目的ページを取得する
+## 2. PDFの対象ページを取得する
 ```py
 from pypdf import PdfReader
 
@@ -193,11 +196,11 @@ def get_target_page_text(reader: PdfReader) -> str:
             return text
     return None
 ```
-- 引数の型をpypdfからインポートして指定している。
+- 引数の型PdfReaderをpypdfからインポートして指定している．
 
-- reader.pagesでPDFの各ページをループする。
-  - page.extract_text()でそのページのテキストを取得。
-  - is_target_page()にテキストを投げて、目的ページかを判定
+- reader.pagesでPDFの各ページをループする．
+  - page.extract_text()でそのページのテキストを取得．
+  - is_target_page()にテキストを投げて，対象ページかを判定
 
 ## 3. キーワード検出で対象ページを決定
 ```py
@@ -222,8 +225,8 @@ def is_target_page(text: str) -> bool:
 
     return True
 ```
-- 目的ページのキーワードをinclude/excludeで検出している。
-目的ページに含まれる文字列が変わった時のために、キーワードは別ファイルに切り出した方がいいかも。（未来のシステム管理者のため）
+- 対象ページのキーワードをinclude/excludeで検出している．
+対象ページに含まれる文字列が変わった時のために，キーワードは別ファイルに切り出した方がいいかも．（未来のシステム管理者のため）
 
 ## 4. 正規表現などでデータを抽出
 ```py
@@ -243,32 +246,32 @@ def parse_data_from_text(text: str) -> list[list[str | int]]:
         data[i].insert(0, prefectures_en[i])
     return data
 ```
-Pythonでの正規表現の扱い方(reモジュール)は、こちらの記事がわかりやすいと思います。
+Pythonでの正規表現の扱い方(reモジュール)は，こちらの記事がわかりやすいと思います．
 https://note.nkmk.me/python-re-match-search-findall-etc/
 
-そもそも正規表現(Regex)って何だ？という方は、こちらの記事がわかりやすいと思います。
+そもそも正規表現(Regex)って何だ？という方は，こちらの記事がわかりやすいと思います．
 https://zenn.dev/seiya0/articles/tech-regular-expression
 
 # PDFの人為的ミスへの対策
-形式変更に対策したらコレでOK！…とはなりません。
-例えばこの総務省消防庁のPDFは、機械生成ではなく手動編集されていると思われるミスが過去にありました。
+形式変更に対策したらコレでOK！…とはなりません．
+例えばこの総務省消防庁のPDFは，機械生成ではなく手動編集されていると思われるミスが過去にありました．
 
 - 人為的ミスの例:
   - テキストの前にスペースがあったりなかったりする
   - 全角記号と半角記号の混在
-  "() vs （）"
-  " vs 　" (半角スペース vs 全角スペース)
+  半角カッコ() vs 全角カッコ（）
+  半角スペース vs 全角スペース...
 
-記事要旨から外れるため紹介に留めますが、上記のようなものは正規表現を用いて、スペース個数を統一したり半角全角に両対応したりするのが良いでしょう。
+記事要旨から外れるため紹介に留めますが，上記のようなものは正規表現を用いて，スペース個数を統一したり半角全角に両対応したりするのが良いでしょう．
 
 # おわりに
-Pythonとpypdfを用いた、PDFの表示形式の変更への対策を紹介しました。
+Pythonとpypdfを用いた，PDFの表式変更への対策を紹介しました．
 
-そもそも、データの置き方・データ形式が利用しやすいものであれば考えなくて済むことなのですが…そうではないモノも中にはあるので、致し方ないですね…。
+そもそも，データの置き方・データ形式が利用しやすいものであれば考えなくて済むことなのですが…そうではないモノも中にはあるので，致し方ないですね…．
 
 :::details もし非エンジニアの方が読まれていたら: どんなデータ形式がいいのか？
 
-**機械的にそのデータを利用する・特に数値的なデータの場合**、私はこう思います。
+**機械的にそのデータを利用する・特に数値的なデータの場合**，私はこう思います．
 
 | 評価 | データ形式 |
 | ---- | ---------- |
@@ -276,8 +279,8 @@ Pythonとpypdfを用いた、PDFの表示形式の変更への対策を紹介し
 | 🔼マシ | Excel |
 | ❌ヤメテ | Word, PDF, PowerPoint, データの画像埋め込み...etc |
 
-Excelはクリック操作のみでCSVへ変換することができます。Excelを公開する場合は、CSV出力までやって頂けるとウレシイです。
+Excelはクリック操作のみでCSVへ変換することができます．Excelを公開する場合は，CSV出力までやって頂けるとウレシイです．
 
-<!-- また、Web上にデータ公開する場合、サイトページにファイルを置くよりもAPIで公開して頂けるとトテモウレシイです。もし社内にエンジニアがいない場合は、ノーコード/ローコードでAPIを作成できるサービスもあります。自動化アプリとして有名なZappierでAPI公開できたり、Excelに似たGoogle Spread Sheetをデータ元としてほんのちょっとのコード(GAS)を書くだけでAPIでデータ公開できたりします（今なら、AIに聞けば簡単なコードはしっかりと書いてくれますし、ITツールの使い方もわかりやすく教えてくれます）。 -->
+<!-- また，Web上にデータ公開する場合，サイトページにファイルを置くよりもAPIで公開して頂けるとトテモウレシイです．もし社内にエンジニアがいない場合は，ノーコード/ローコードでAPIを作成できるサービスもあります．自動化アプリとして有名なZappierでAPI公開できたり，Excelに似たGoogle Spread Sheetをデータ元としてほんのちょっとのコード(GAS)を書くだけでAPIでデータ公開できたりします（今なら，AIに聞けば簡単なコードはしっかりと書いてくれますし，ITツールの使い方もわかりやすく教えてくれます）． -->
 :::
 
