@@ -62,6 +62,12 @@ https://github.com/py-pdf/pypdf
 
 
 # コード例と説明
+0. [コード全体](https://zenn.dev/masa0902dev/articles/pdf-dynamic-detection#0.-%E3%82%B3%E3%83%BC%E3%83%89%E5%85%A8%E4%BD%93)
+1. [PDFファイルを読み込む](https://zenn.dev/masa0902dev/articles/pdf-dynamic-detection#1.-pdf%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80)
+2. [PDFの対象ページを取得する](https://zenn.dev/masa0902dev/articles/pdf-dynamic-detection#2.-pdf%E3%81%AE%E5%AF%BE%E8%B1%A1%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B)
+3. [【ココ本題】キーワード検出で対象ページを決定](https://zenn.dev/masa0902dev/articles/pdf-dynamic-detection#3.-%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89%E6%A4%9C%E5%87%BA%E3%81%A7%E5%AF%BE%E8%B1%A1%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%B1%BA%E5%AE%9A)
+4. [正規表現などでデータを抽出](https://zenn.dev/masa0902dev/articles/pdf-dynamic-detection#4.-%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%81%AA%E3%81%A9%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E6%8A%BD%E5%87%BA)
+
 ## 0. コード全体
 要旨のコードの全体像です．
 
