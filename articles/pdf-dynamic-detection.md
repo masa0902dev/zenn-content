@@ -28,11 +28,12 @@ https://heatstroke.jp/
 原因は，[総務省消防庁のサイト](https://www.fdma.go.jp/disaster/heatstroke/post3.html)から取得している週報PDF（搬送者数の速報実測値）の形式が変わったことでした．PDFの対象ページの内容自体はあまり変わっていなかったため，今後の形式変更への対策として，対象ページを動的に検出する方法を実装しました．
 
 :::details 熱中症搬送者数予測サイトについて
-予測値は05/21から生成されています！
-熱中症対策の目安としてご利用ください．2024年は10都道府県のみでしたが，2025年からは47都道府県に対応しています．
+予測値は05/21から生成されています！熱中症対策の目安としてご利用ください．
+2024年は10都道府県のみでしたが，2025年からは47都道府県に対応しています．
+<br>
 
 2025年時点での関連主要論文は下記のとおりです．
-詳細は，[こちらのプレスリリース](https://www.nitech.ac.jp/news/press/2025/12908.html)をご参照ください．
+詳細は，[こちらの2025年版プレスリリース](https://www.nitech.ac.jp/news/press/2025/12908.html)をご参照ください．
 1. 47都道府県における推定および地方における推定誤差
 T. Matsuura, S. Kodera, and A. Hirata, “Predicting Heat-related Morbidity in Japan through Integrated Meteorological and Behavioral Factors,” Environmental Challenges, vol. 18, article no. 101106, 2025.
 2. 8都道府県における推定
@@ -41,8 +42,8 @@ A Takada, S Kodera, K Suzuki, M Nemoto, A Hirata, "Estimation of the number of h
 T. Nishimura, E. A. Rashed, S Kodera, H. Shirakami, R. Kawaguchi, K Watanabe, M. Nemoto, A. Hirata, “Social implementation and intervention with estimated morbidity of heat-related illnesses from weather data: a case study from Nagoya City, Japan,” Sustainable Cities and Society 74, 103203, 2021
 4. 高齢者搬送者数の推定
 S Kodera, T Nishimura, EA Rashed, K Hasegawa, I Takeuchi, R Egawa, A. Hirata, “Estimation of heat-related morbidity from weather data: A computational study in three prefectures of Japan over 2013-2018,” Environment international 130, 104907, 2019
-
 <br>
+
 「熱中症搬送者数予測サイト」に関するメディアや文章画像利用などのお問い合わせは，以下ページの「お問い合わせフォーム」からお願いいたします．
 https://heatstroke.jp/disclaimer.html
 
