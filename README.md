@@ -9,6 +9,10 @@ npx zenn new:article --slug 記事のスラッグ
 - slugは記事・本ごとにユニークに。他ユーザーの記事で使用済みのslugも使用できない！
 - slugを変えると別の投稿として作成される！
 
+画像
+- 画像は/imagesに置く必要がある．
+- 画像パスは`![altテキスト](/image/img-filename.png)`のように絶対パス必須．
+
 
 # Markdown & Latex
 ## snippets
