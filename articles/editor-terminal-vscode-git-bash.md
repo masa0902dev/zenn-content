@@ -3,7 +3,7 @@ title: "研究室のためのターミナルとエディタの環境構築: bash
 emoji: "✏️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["terminal", "bash", "editor", "VScode"]
-published: false
+published: true
 ---
 
 # 0. はじめに
