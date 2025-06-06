@@ -8,10 +8,16 @@ published: false
 
 # 0. はじめに
 ## 扱う内容
-- コマンドを打つターミナル・コード(プログラム)を編集するエディタの環境を整える．
+✅扱う内容
+- コマンドを打つターミナル・コード(プログラム)を編集するエディタの環境を作る．
   - ターミナルにはGit Bash，シェルにbashを使用する
   - エディタにはVScodeを使用する．
 - そもそもターミナル，シェルとは何か？エディタは何ができるのか？
+- VScodeとbashを使った開発ハンズオン
+
+❌扱わない内容
+- [Gitのインストールと初期設定](https://zenn.dev/masa0902dev/articles/lab-git-github)
+- シェルスクリプトの詳細
 
 
 
@@ -19,9 +25,9 @@ published: false
 - 開発環境をお手軽に作りたい人
 - VScode, bashで業界標準(?)な開発環境を作りたい人
 - 研究室配属時に開発環境の構築をミスっちゃった人
-- エディタやターミナルと聞いても「なにそれ？」な人
+- ターミナルやエディタと聞いても「なにそれ？」な人
 
-基本的にWindowsOS向けですが，MacOSでもおおよそ可能です．
+基本的にWindowsOS向けですが，MacOSでもおよそ可能です．
 
 :::details 目次
 - [0. はじめに](#0-はじめに)
@@ -58,15 +64,16 @@ published: false
 - [3. 実際に開発してみよう](#3-実際に開発してみよう)
   - [その前に開発ディレクトリを決めよう](#その前に開発ディレクトリを決めよう)
   - [VScodeで開発してみよう](#vscodeで開発してみよう)
+- [4. おわりに](#4-おわりに)
 
 :::
 
 # 1. ターミナル: Git Bash
 ## そもそもターミナルとは？
-ターミナルとは，コンピュータに「文字だけ」で命令を伝えるための画面やアプリケーションです．一方で，ボタンをクリックしたりファイルを見た目で表示したりと，直感的な操作が可能になっている物もあります．これらは対比して CLI (Command Line Interface), GUI (Graphical User Interface)と呼ばれます．
-ターミナルはコマンドプロンプト・コンソールなどと呼ばれることもあります．Windowsの場合はWindowsターミナルという名称のものがデフォルトで入っており，Macの場合はターミナルという名称のものがデフォルトで入っています．
+ターミナルとは，コンピュータに「文字だけ」で命令を伝えるための画面やアプリケーションです．一方で，ボタンをクリックしたりファイルを見た目で表示したりと，直感的な操作が可能になっているアプリケーションもあります．これらは対比して CLI (Command Line Interface), GUI (Graphical User Interface)と呼ばれます．
+ターミナルはコマンドプロンプト，コンソールなどと呼ばれることもあります．Windowsの場合はWindowsターミナルという名称のものがデフォルトで入っており，Macの場合はターミナルという名称のものがデフォルトで入っています．
 
-ターミナルでは例えば，ファイルやディレクトリ(フォルダ)の作成や移動，プログラムの実行などを，コマンドを入力して操作します．初心者には難しく感じるかもしれませんが，慣れると作業がとても効率的になります．そもそも，ターミナル経由でしか行えない処理がたくさんあります．
+ターミナルでは例えば，ファイルやディレクトリ(フォルダ)の作成や移動，プログラムの実行などを，コマンドを入力して操作します．はじめは難しく感じるかもしれませんが，慣れると作業がとても効率的になります．そもそも，ターミナル経由でしか行えない処理がたくさんあるので，開発をするならターミナルなしで生きる事はおよそ不可能です．
 
 コマンドの例↓ いま覚える必要は全くありません．
 ターミナルで色々便利なことができるんだな，と実感してもらえればOKです．
@@ -74,10 +81,10 @@ published: false
 # Pythonファイルを実行し，出力をコピーする
 python main.py | pbcopy
 
-# ファイル内でbashという単語が何回使われているかを調べる例（大文字小文字を問わない）
-cat articles/editor-terminal-vscode-git-bash.md | grep -i "bash" | wc -l
+# ファイル内でbashという単語が使われている文とその周辺のテキストを表示（大文字小文字を問わない）
+cat articles/editor-terminal-vscode-git-bash.md | grep -i -C 2 "bash"
 
-# GithubのPRを作成する例
+# GithubのPRをオプション付きで作成する
 gh pr create --base main --head fix/api-xxx \
 --title "fix: pr title yyy" --fill-verbose --reviewer awesomedev
 ```
@@ -212,12 +219,12 @@ VScode内で開かれるターミナル（integrated terminla）のシェルをG
 1. ctrl shift P
 2. open user settings json と入力してEnter
 3. jsonファイル(settings.json)が開くので，下記を追記 (pythonでインデントをスペース4つにする例)
-  ```json
-  "[python]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": false,
-  },
-  ```
+   ```json
+   "[python]": {
+     "editor.tabSize": 4,
+     "editor.insertSpaces": false,
+   },
+   ```
 4. もし一部ファイルで設定が適用されない場合，VScode下部の`Spaces: 2`または`Tabs Size: 2`のように表示されている部分をクリックして設定しましょう．
   ![VScodeの言語ごとのインデント設定](/images/vscode-settings-indent.png)
 
@@ -355,13 +362,13 @@ CSV: Comma-Separated Values の略．ファイルの拡張子．ExcelやGoogle S
 2. open user settings json と入力しEnter (settings.jsonを開く)
 3. settings.jsonに下記を追加
 (例: pythonのフォーマッタをblackにし，インデントをスペース4つにする)
-  ```json
-  "[python]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": false,
-    "editor.defaultFormatter": "ms-python.black-formatter"
-  }
-```
+   ```json
+   "[python]": {
+      "editor.tabSize": 4,
+      "editor.insertSpaces": false,
+      "editor.defaultFormatter": "ms-python.black-formatter"
+   }
+   ```
 
 
 
@@ -380,6 +387,8 @@ CSV: Comma-Separated Values の略．ファイルの拡張子．ExcelやGoogle S
 OneDriveやiCloudの管理下にあるディレクトリに開発ディレクトリを置くのは避けましょう．なぜなら，下記のようなデメリットがあるからです．
 1. クラウドとの通信で処理が遅くなることがある．
 2. クラウドへ編集内容が反映されなかったり，`main.py 2`, `main.py 3`, ...のようなファイルが作られたりする．（著者は`main.py 2`で痛い目を見ました）
+
+HOMEディレクトリならクラウド管理されていないはずなので，そこが確実です．
 :::
 
 イメージとしては下記のようになります．
@@ -412,9 +421,74 @@ OneDriveやiCloudの管理下にあるディレクトリに開発ディレクト
           ├── isobe-org
           ├── purego
           └── zero-python
+      ...
 ...
 ```
 
-もし過去に書いたコードがある場合，ファイルエクスプローラー(Windowsの黄色いフォルダのアイコンのやつ🗂️)などでファイルを開発ディレクトリに移動させましょう．
+過去に書いたコードがある場合，ファイルエクスプローラ(Windowsの黄色いフォルダのアイコンのやつ🗂️)などを使って，ファイル/ディレクトリを開発ディレクトリに移動させましょう．
+
+
 
 ## VScodeで開発してみよう
+プロジェクトディレクトリを作り，VScodeでPythonファイルを実行してみましょう．
+
+※もしターミナルで`python -V`を実行してバージョンが表示されなければ，マシンにpythonが入っていません．その場合，[こちらの記事を参考にして](https://sukkiri.jp/technologies/processors/python/python%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95windows%E7%B7%A8.html)Pythonをダウンロードして下さい．ダウンロードするバージョンは，Stable Releasesの最新バージョンでOKです．
+
+
+1. VScodeを開き，ctrl O で開発ディレクトリを開く
+2. `vscode-handson`ディレクトリを作る:
+  サイドバーにあるエクスプローラのNew Folderボタンをクリック
+  ![UIからディレクトリ作成](/images/vscode-handson-new-dir.png)
+3. `vscode-handson`ディレクトリを開く:
+  ターミナルで`code ./vscode-handson`を実行すると，新しいウィンドウが開かれる
+4. `main.py`ファイルを作る:
+  サイドバーにあるエクスプローラのNew Fileボタンをクリック
+5. ファイルを開いて編集:
+  `main.py`をクリックしてエディタに開き，コードを書く（下記コピペでOK）．
+   ```py:main.py
+   def greeting(name):
+       print(f"Hello, {name}!")
+
+   def main():
+       greeting("masa")
+       a = 20
+       for i in range(5):
+           num = a * i
+           if num > 50:
+               print(f"{num} is greater than 50")
+           else:
+               print(f"{num} is not greater than 50")
+
+   if __name__ == "__main__":
+       main()
+   ```
+6. ファイルを実行:
+  ターミナルで`python main.py`を実行すると，下記のような実行結果が出力される
+   ```bash
+   Hello, masa!
+   0 is not greater than 50
+   20 is not greater than 50
+   40 is not greater than 50
+   60 is greater than 50
+   80 is greater than 50
+   ```
+
+<br>
+最後に，コードを適切に分割するコーディングを見てみましょう．
+
+こちらのGithubリポジトリにコード例を置きました．コードを見てみると，main.pyにシナリオが書いてあり，main.pyからutilディレクトリ・drawディレクトリ内のコードを呼び出して使用しているのがわかると思います．
+https://github.com/masa0902dev/handson-bash-vscode
+
+つまり伝えたい事は「main.pyに全てのコードを書いて1万行とかのファイルを作らないでね」という事です．なぜかというと，とんでもなく読みにくい・とんでもなく変更しずらいソフトウェアが出来上がってしまうからです．
+先輩からもらったコードがとんでもなく読みにくかった経験はありませんか？ソフトウェアを適切に構造化する事で，そのような被害をなくしていきましょう．
+
+
+
+
+
+# 4. おわりに
+本記事では，ターミナルやシェル，エディタについて説明しつつ，Git Bash・VScodeによる開発環境を構築しました．
+研究室で「学部生が新しく配属された」「開発環境を手軽に良くしたい」などのシチュエーションでご利用いただければと思います．
+
+著者の所属研究室では，実際にこのように開発環境を構築し直しました．
+次はGit,Githubのハンズオンを予定しています．

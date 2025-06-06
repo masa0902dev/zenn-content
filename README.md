@@ -13,6 +13,8 @@ npx zenn new:article --slug 記事のスラッグ
 - 画像は/imagesに置く必要がある．
 - 画像パスは`![altテキスト](/image/img-filename.png)`のように絶対パス必須．
 
+**ディレクトリ分け**
+TODO: シンボリックリンクを使えば上手く構造化できるのでは？
 
 
 # Markdown & Latex
