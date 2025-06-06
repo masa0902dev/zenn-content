@@ -1,5 +1,5 @@
 ---
-title: "研究室のためのターミナルとエディタの環境構築: bash, VScode"
+title: "研究室のためのターミナルとエディタの開発環境構築: bash, VScode"
 emoji: "✏️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["terminal", "bash", "editor", "VScode"]
