@@ -13,15 +13,53 @@ published: false
   - エディタにはVScodeを使用する．
 - そもそもターミナル，シェルとは何か？エディタは何ができるのか？
 
+
+
 ## 対象読者
 - 開発環境をお手軽に作りたい人
-- VScode, bashで業界標準(?)な環境を作りたい人
+- VScode, bashで業界標準(?)な開発環境を作りたい人
 - 研究室配属時に開発環境の構築をミスっちゃった人
 - エディタやターミナルと聞いても「なにそれ？」な人
 
-基本的にWindowsOS向けです．
+基本的にWindowsOS向けですが，MacOSでもおおよそ可能です．
 
+:::details 目次
+- [0. はじめに](#0-はじめに)
+  - [扱う内容](#扱う内容)
+  - [対象読者](#対象読者)
+- [1. ターミナル: Git Bash](#1-ターミナル-git-bash)
+  - [そもそもターミナルとは？](#そもそもターミナルとは)
+    - [ターミナルとシェル](#ターミナルとシェル)
+  - [インストール](#インストール)
+- [2. エディタ: VScode](#2-エディタ-vscode)
+  - [そもそもエディタとは？](#そもそもエディタとは)
+    - [VScodeについて](#vscodeについて)
+    - [Github Copilotについて](#github-copilotについて)
+  - [インストール](#インストール-1)
+  - [インストーラーのセットアップ](#インストーラーのセットアップ)
+  - [動作確認](#動作確認)
+  - [VScodeの最低限の設定](#vscodeの最低限の設定)
+    - [自動保存](#自動保存)
+    - [デフォルトのシェル](#デフォルトのシェル)
+    - [各言語のインデント](#各言語のインデント)
+    - [gitのエディタをVScodeにする](#gitのエディタをvscodeにする)
+    - [テーマ設定](#テーマ設定)
+      - [BONUS: フォント設定](#bonus-フォント設定)
+  - [VScodeの最低限のショートカットキー](#vscodeの最低限のショートカットキー)
+  - [VScodeの最低限のExtension](#vscodeの最低限のextension)
+    - [共通](#共通)
+      - [Error Lens](#error-lens)
+      - [GitHut Copilot / Copilot Chat](#githut-copilot--copilot-chat)
+      - [indent-rainbow](#indent-rainbow)
+      - [Rainbow CSV](#rainbow-csv)
+    - [言語ごと](#言語ごと)
+      - [Language Support](#language-support)
+      - [フォーマッタ](#フォーマッタ)
+- [3. 実際に開発してみよう](#3-実際に開発してみよう)
+  - [その前に開発ディレクトリを決めよう](#その前に開発ディレクトリを決めよう)
+  - [VScodeで開発してみよう](#vscodeで開発してみよう)
 
+:::
 
 # 1. ターミナル: Git Bash
 ## そもそもターミナルとは？
@@ -59,9 +97,13 @@ MacOSの場合はデフォルトでzshになっていますが，無理にbash�
 シェルの選定理由は上記の通り．ターミナルの選定理由は，お手軽に使えるからです．Git BashはGitをインストールする際に一緒についてくるため，特にWindowsOSにてお手軽にbashを使うのに適しています．
 
 
+
 ## インストール
 こちらの「3. Gitのはじめ方」セクションを参照してください．
 https://zenn.dev/masa0902dev/articles/lab-git-github
+
+
+
 
 
 
@@ -78,7 +120,7 @@ https://zenn.dev/masa0902dev/articles/lab-git-github
 エディタにも種類はたくさんあり，emacs, vi, VScode, Atom, IntelliJ, Pycharm…等があります．
 しかし現在では，実は「純粋な」エディタで有名なものは emacs, vi くらいです．多くのエディタは，コードを書くだけでなく，例えばターミナルやデバッガ，ファイルエクスプローラ等の機能を統合しているため，IDE (Integrated Development Environment)と呼ばれます．
 
-VScodeもIDEと呼ばれるものの１つで，少なくともソフトウェアエンジニアリング領域では業界標準になっていると認識しています．
+VScodeもIDEと呼ばれるものの１つで，少なくともソフトウェアエンジニアリング領域では業界標準だと認識しています．
 
 ### VScodeについて
 ![VScodeの見た目](/images/vscode-img.png)
@@ -89,23 +131,28 @@ VScodeもIDEと呼ばれるものの１つで，少なくともソフトウェ�
 また，VScodeではExtensionという機能があります．
 Extensionはクリック操作で簡単にインストールでき，VScodeをより便利にすることができます．例えば，関数ジャンプを有効にしたり，エラーをエディタ内に表示したり，GUIでgit操作をしたり，コードフォーマッタをお手軽に使ったり…など色々な機能があります．
 
-**さらに，学生・教員なら無料でGithub Copilot Proを使用できます！**
+さらに，VScodeはGUIでのgit操作をデフォルトで提供しています．
+これからgit,githubを使おうという方は，CLIではなくGUIを使った方がハードルが低くて良いかと思います．下記記事がVScodeのGUIでのgit,github操作について分かりやすく網羅的です．
+https://zenn.dev/praha/articles/db1c4bcc4ef48c
+
+### Github Copilotについて
+**学生・教員なら，無料でGithub Copilot Proを使用できます！**
 Copilotはいわゆる生成AIで，エディタ内でコードを提示してくれたり，VScode内でファイルを認識させた上でAIとチャットしたりすることができます．
-学生・教員ならGithub Proを無料で使うことができ，その内容としてCopilot Proを無料で使えます．やり方は下記記事がわかりやすいかと思います．学生・教員はぜひ登録してください（大学規約は確認しましょう）．
+学生・教員ならGithub Proを無料で使うことができ，その内容としてCopilot Proを無料で使えます．やり方は下記記事がわかりやすいかと思います．学生・教員はぜひ登録してください．（大学によっては生成AIの利用を規制しているかもしれません．念のため確認しましょう．）
 https://zenn.dev/iput_app/articles/77809fa7dd59be
 
-最後に，VScodeはGUIでのgit操作をデフォルトで提供しています．
-これからgit,githubを使おうという方は，最初のうちはCLIではなくGUIを使った方がハードルが低くて良いかと思います．下記記事がVScodeのGUIでのgit,github操作について分かりやすく網羅的です．
-https://zenn.dev/praha/articles/db1c4bcc4ef48c
+
 
 ## インストール
 公式サイトからインストールしましょう．
 https://code.visualstudio.com/
 
-### インストール時のアドバイス
+**インストール時のアドバイス:**
 あなたが「32bit，64bit，ARMとか，どれを入れればいいのか分からない！」という場合は，Windowsなら大体の人は64bitを選べばOKです．
 
-Windowsは，「設定」からシステム>バージョン情報のデバイスの使用に書いてあるものをインストールしましょう．自分のWindowsPCだと「システムの種類」が”64 ビット オペレーティング システム，x64 ベース プロセッサ”とあるので64bitです．
+Windowsは，「設定」から`システム>バージョン情報`の`デバイスの仕様`に書いてあるものをインストールしましょう．著者のWindowsPCだと「システムの種類」が`64 ビット オペレーティング システム，x64 ベース プロセッサ`とあるので64bitです．
+
+
 
 ## インストーラーのセットアップ
 特に大事なのが，`code`コマンド設定と`PATH`への追加です．
@@ -118,6 +165,8 @@ codeコマンドは指定パスをvscodeで開くコマンドです．毎日使�
 PATHが何か分からない場合は下記記事が分かりやすいです（分からずとも本記事では問題なし）．
 https://wa3.i-3-i.info/word18470.html
 https://qiita.com/ryouya3948/items/8edbd5d744c83dd41141
+
+
 
 ## 動作確認
 ダウンロードされたVScodeを開いてみましょう．
@@ -136,10 +185,10 @@ Windowsなら，ホーム画面下の検索窓で検索すればアプリが見�
 x64
 ```
 
+
 ## VScodeの最低限の設定
 VScodeは設定が大量にあります．毎日使うものなので，色々設定できるのはありがたい．
-しかし，よく分からないうちは下記3つだけ設定すれば十分です！
-
+しかし，よく分からないうちは下記5つだけ設定すれば十分です！
 
 ### 自動保存
 コードが自動保存されるようにします．
@@ -149,12 +198,41 @@ VScodeは設定が大量にあります．毎日使うものなので，色々�
 2. open user settings と入力してEnter（ユーザ設定をGUIで設定する）
 3. 検索窓に auto save と入力し，出てきた設定項目を"off"から"onFocusChange"に変更
 
-### デフォルトのシェルを設定
+### デフォルトのシェル
 VScode内で開かれるターミナル（integrated terminla）のシェルをGit Bashに設定します．
 
 1. ctrl shift P
 2. select default profile と入力してEnter
 3. Git Bashを選択
+
+### 各言語のインデント
+インデント(Indent)はコードを字下げするものです．インデント設定は言語ごとにスタンダードがあるため，あなたが使う言語でのインデントを設定しておきましょう(例: Pythonはスペース4つ)．ただし，チームでコーディングルールを決めている場合はそちらに従いましょう．
+各言語でのスタンダードは，`python indent coding rule`, `python indent style guide`のようにググれば出てきます．
+
+1. ctrl shift P
+2. open user settings json と入力してEnter
+3. jsonファイル(settings.json)が開くので，下記を追記 (pythonでインデントをスペース4つにする例)
+  ```json
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+  },
+  ```
+4. もし一部ファイルで設定が適用されない場合，VScode下部の`Spaces: 2`または`Tabs Size: 2`のように表示されている部分をクリックして設定しましょう．
+  ![VScodeの言語ごとのインデント設定](/images/vscode-settings-indent.png)
+
+### gitのエディタをVScodeにする
+デフォルト設定だと`git commit`等をした際に「謎の黒い空間」に飛ばされます．おそらく身動きが取れなくなって困るので，`git commit`等をした際に使うエディタをVScodeに変更しましょう．
+
+ターミナルにて，下記を入力してEnter．
+```bash
+git config --global core.editor 'code --wait'
+```
+:::details 「謎の黒い空間」は何？
+大体の場合，nanoというエディタです（マシンによってはemacsやvimかも）．
+
+編集・保存するために色々とコマンドを知っておく必要があり，知識がないとそこから脱出することさえできません．著者も初心者の頃に怖い思いをしました．
+:::
 
 ### テーマ設定
 VScode全体のテーマ(Theme)を設定する事で，見た目を簡単に変えられます．
@@ -180,10 +258,10 @@ VScode全体のテーマ(Theme)を設定する事で，見た目を簡単に変�
 
 著者おすすめの FiraCode Nerd Font Mono を設定します．
 
-1. [こちらのダウンロードサイト](https://www.nerdfonts.com/font-downloads)からフォントをダウンロード
-2. Windowsの場合，ダウンロードした内容を[こちらを参考に](https://support.microsoft.com/ja-jp/office/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B-b7c5f17c-4426-4b53-967f-455339c564c1)フォントを使用可能にする．
-3. ctrl shift P
-4. open user settings でEnter
+1. [こちらのNerdFontsサイト](https://www.nerdfonts.com/font-downloads)から`FiraCode Nerd Font`をダウンロード
+2. Windowsの場合，ダウンロードしたフォントを[こちらを参考に](https://support.microsoft.com/ja-jp/office/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B-b7c5f17c-4426-4b53-967f-455339c564c1)使用可能にする．
+3. VScodeでctrl shift P
+4. open user settings と入力してEnter
 5. 検索欄にfontと入力し，EditorのFont Familyを'FiraCode Nerd Font Mono'に設定．
 6. 検索欄にterminal fontと入力し，Terminal IntegratedのFont Familyを'FiraCode Nerd Font Mono'に設定．
 
@@ -200,32 +278,98 @@ Macの場合は，homebrewを使ってNerdFontをインストールするのが�
 
 ![VScodeの領域の名称](/images/vscode-area-name.png)
 
-ターミナルは表示位置を下部分にしたり，エディタ部分にターミナルを表示することもできます．
+ターミナルは表示位置を下部にしたり，エディタ部分にターミナルを表示することもできます．
 
 サイドバーでは，例えば以下のようなことができます．
-- ディレクトリとファイルを閲覧，作成/削除/名称変更，エディタへ開く
+- ディレクトリとファイルの閲覧/作成/削除/名称変更，ファイルをエディタへ開く
 - GUIでGit操作
 - ファイル検索
 - デバッグ
 - Extensionのインストールや管理
 
 
+
 ## VScodeの最低限のExtension
-TODO: Extensionから書く．ちなみに，VScode bashのハンズオンでは動画はいらない．ターミナル・シェル，エディタの説明だけ先に俺がやって，その他は俺の説明なしで各自やってくださいにする．
+最低限のExtensionを入れて，開発効率を上げていきましょう．
+Extensionはサイドバーの「四角形４つ」的なボタンからインストールできます．
+
 ### 共通
-1. Error Lens
-2. GitHut Copilot / Copilot Chat
-3. Rainbow Indent
-4. CSV Rainbow
+#### Error Lens
+デフォルトでは，エラーは該当部分ホバー or ターミナルのProblemsでしか表示されません．一方，Error Lensを使えばエディタ内にエラーを直接表示できます．
+![Error Lensの表示イメージ](/images/vscode-extension-errorlens.png)
+
+#### GitHut Copilot / Copilot Chat
+Github Copilotを使うなら入れておきましょう．Github Copilot Proを無料で利用するには，[Github Copilotについて](#github-copilotについて)のセクションを参照して下さい．
+
+#### indent-rainbow
+インデントを見やすくしてくれます．
+例えばPythonはインデントがシンタックスに組み込まれており，初心者はインデントのミスでエラーになることも多いため，重宝するかと思います（ちなみに著者はどの言語でもindent-rainbowを使っています）．背景の色・透明度は自由に設定可能です．
+
+| indent-rainbowあり | なし |
+| -- | -- |
+| ![indent-rainbowありの見た目](/images/vscode-extension-indentrainbow.png) | ![indent-rainbowなしの見た目](/images/vscode-extension-non-indentrainbow.png) |
+
+#### Rainbow CSV
+csvファイルを見やすくしてくれます．
+生のcsvファイルを見る事はそう多くないですが，コードの動作確認で見ることはよくあるため，見やすくしておきましょう．
+
+:::details そもそもcsvとは？
+CSV: Comma-Separated Values の略．ファイルの拡張子．ExcelやGoogle SpreadSheet等のアプリケーションはCSVを操作しています．
+
+コンマ(,)で区切られた値を持つテキストファイル形式で，データ出力先としてよく使います．`dat`ファイルをデータ出力先として使う人もいますが，著者はCSVファイルを推奨します．なぜなら，datファイルはデータの区切り形式がシステムや人によって異なり，形式を合わせる手間が生じるからです（そもそも多くのdatファイルは他ソフトウェアとのデータ共有・変換を意図していない）．一方，CSVファイルはデータの区切り形式が決まっているため扱いやすいです．
+
+ちなみに，CSVの最後の行にはコンマを付けないようにしましょう．(参考: [RFC4180](https://datatracker.ietf.org/doc/html/rfc4180))
+
+:::
+
+| Rainbow CSVあり | なし |
+|----|----|
+| ![Rainbow CSVありの見た目](/images/vscode-extension-csv.png) | ![Rainbow CSVなしの見た目](/images/vscode-extension-non-csv.png) |
 
 ### 言語ごと
-1. 公式Extension
-2. フォーマッタ
+#### Language Support
+言語ごとに，基本的なLanguage Supportは入れておきましょう．関数ジャンプや適切なコードハイライトなどなどの機能が追加されます．必要に応じて色々入れましょう（個人提供のものはインストール前に安全性を確認して下さい）．
+
+| lang | extension | provider |
+| ---- | ---- | ---- |
+| Python | Python | Microsoft |
+| C++ | C/C++ | Microsoft |
+| Golang | Go | Go Team at Google |
+
+など…
+
+#### フォーマッタ
+フォーマッタ(Formatter)とは，コードを見やすく整形してくれるツールです．いちいち手動でインデントを揃えたり，スペースを揃えたりするのは面倒ですから，フォーマットはすべてフォーマッタに任せましょう．
+色々と設定できるのですが，最初のうちはデフォルト設定でよいと思います．ただし，チームでコーディングルールを決めている場合はそちらに従いましょう．
+
+| lang | extension | provider |
+| ---- | ---- | ---- |
+| Python | Black Formatter | Microsoft |
+| C++ | C/C++ | Microsoft |
+| Golang | (なし) | (言語自体にフォーマッタgofmtが付いている) |
+
+など…
+
+言語ごとにフォーマッタを設定するには下記．
+1. ctrl shift P
+2. open user settings json と入力しEnter (settings.jsonを開く)
+3. settings.jsonに下記を追加
+(例: pythonのフォーマッタをblackにし，インデントをスペース4つにする)
+  ```json
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  }
+```
 
 
 
-# コードを書く前の準備
-## 開発ディレクトリを決めよう
+
+
+
+# 3. 実際に開発してみよう
+## その前に開発ディレクトリを決めよう
 ターミナルやエディタ以前のこととして，コードを書くディレクトリ(開発ディレクトリ)は決めておきましょう．
 
 例えば，HOMEディレクトリ直下に`formycode`のようなディレクトリを作って，その中にプロジェクトごとにディレクトリを作りましょう．（HOMEディレクトリとは，あなたがターミナルを開いた時に最初にいるディレクトリで，`echo $HOME`で表示されるパスのことです．大体は`/User/{username}`です．）
@@ -273,4 +417,4 @@ OneDriveやiCloudの管理下にあるディレクトリに開発ディレクト
 
 もし過去に書いたコードがある場合，ファイルエクスプローラー(Windowsの黄色いフォルダのアイコンのやつ🗂️)などでファイルを開発ディレクトリに移動させましょう．
 
-## 実際にVScodeでコードを書いてみよう
+## VScodeで開発してみよう

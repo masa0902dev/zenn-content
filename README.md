@@ -14,7 +14,17 @@ npx zenn new:article --slug 記事のスラッグ
 - 画像パスは`![altテキスト](/image/img-filename.png)`のように絶対パス必須．
 
 
+
 # Markdown & Latex
+## Markdown Syntax
+見出しリンク（Markdown標準）: `[表示テキスト](#見出しの-名前)`のように，半角スペースはハイフンにする．
+リンクはURLなので，小文字で書く．ただし，日本語はURLエンコードせずともいける．
+
+## 目次を生成する
+コマンドパレットで`table of content` (Markdown All in One)．
+ファイル保存すると自動更新される！
+目次をzennの details に入れるには，中身に最後１空行を入れること．じゃないと勝手に削除されてしまう．
+
 ## snippets
 `$$`, `$$\n$$`内は、言語がLatexとして認識される。
 よって、数式のSnippet登録はLatexにする必要がある。
