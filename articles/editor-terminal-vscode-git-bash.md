@@ -222,7 +222,7 @@ VScode内で開かれるターミナル（integrated terminla）のシェルをG
    ```json
    "[python]": {
      "editor.tabSize": 4,
-     "editor.insertSpaces": false,
+     "editor.insertSpaces": true,
    },
    ```
 4. もし一部ファイルで設定が適用されない場合，VScode下部の`Spaces: 2`または`Tabs Size: 2`のように表示されている部分をクリックして設定しましょう．
@@ -365,7 +365,7 @@ CSV: Comma-Separated Values の略．ファイルの拡張子．ExcelやGoogle S
    ```json
    "[python]": {
       "editor.tabSize": 4,
-      "editor.insertSpaces": false,
+      "editor.insertSpaces": true,
       "editor.defaultFormatter": "ms-python.black-formatter"
    }
    ```
