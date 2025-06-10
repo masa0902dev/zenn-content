@@ -359,20 +359,22 @@ CSV: Comma-Separated Values の略. ファイルの拡張子. ExcelやGoogle Spr
 | ---- | ---- | ---- |
 | Python | Black Formatter | Microsoft |
 | C++ | C/C++ | Microsoft |
-| Golang | (なし) | (言語自体にフォーマッタgofmtが付いている) |
+| Golang | (なし) | (言語自体にフォーマッタが付いている) |
 
 など…
 
 言語ごとにフォーマッタを設定するには下記: 
 1. ctrl shift P
 2. open user settings json と入力しEnter (settings.jsonを開く)
-3. settings.jsonに下記を追加
-(例: pythonのフォーマッタをblackにし, インデントをスペース4つにする)
+3. settings.jsonに下記を追加 (例: pythonフォーマッタをblack, インデントをスペース4つにする. また, ファイル保存時に自動でフォーマットされるようにする)
    ```json
    {
       // 既存の設定…
+      // …
 
-      // これを追記
+      // 全体の設定
+     "editor.formatOnSave": true,
+      // python固有の設定
       "[python]": {
          "editor.tabSize": 4,
          "editor.insertSpaces": true,
@@ -380,7 +382,6 @@ CSV: Comma-Separated Values の略. ファイルの拡張子. ExcelやGoogle Spr
       }
    }
    ```
-
 
 
 
