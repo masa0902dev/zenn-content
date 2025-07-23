@@ -58,6 +58,7 @@ published: true
       - [Github Copilot / Copilot Chat](#github-copilot--copilot-chat)
       - [indent-rainbow](#indent-rainbow)
       - [Rainbow CSV](#rainbow-csv)
+      - [Remote Development](#remote-development)
     - [言語ごと](#言語ごと)
       - [Language Support](#language-support)
       - [フォーマッタ](#フォーマッタ)
@@ -338,6 +339,13 @@ CSV: Comma-Separated Values の略. ファイルの拡張子. ExcelやGoogle Spr
 | Rainbow CSVあり | なし |
 |----|----|
 | ![Rainbow CSVありの見た目](/images/vscode-extension-csv.png) | ![Rainbow CSVなしの見た目](/images/vscode-extension-non-csv.png) |
+
+#### Remote Development
+コレがあれば, 計算機サーバにSSH接続した際にもVScodeが使えます.
+(このExtensionはRemote-SSH等をまとめてインストールするものです.) 
+
+使い方の詳細はこちらの記事などを参照:
+https://86note.com/vscode-ssh/
 
 ### 言語ごと
 #### Language Support
