@@ -9,14 +9,13 @@ published: true
 
 
 # 本記事のモチベーション
-著者(いち学生)の所属研究室の計算機サーバは, デフォルトではg++コンパイラが`GCC8.5`, C++が`C++17`しか使えませんでした. 私としては, 関数型プログラミング的な表現が便利なのでC++23を使いたいです.
+著者(いち学生)の研究室の計算機サーバでは, デフォルトでg++コンパイラが`GCC8.5`, C++が`C++17`しか使えませんでした. 私としては, 関数型プログラミング的な表現が便利なのでC++23を使いたい.
 
-サーバ上でC++23を使うこと自体は簡単でした. `/opt/rh/gcc-toolset-13`があったので, その中にあるC++23を使えばよいです.
-しかし, gcc-toolset-13では標準ライブラリが不足しており, 例えば`std::ranges::to`などが使えませんでした.
+サーバ上でC++23を使うこと自体は簡単でした. `/opt/rh/gcc-toolset-13`があったので, その中にあるC++23を使えばよいです. しかし, gcc-toolset-13では標準ライブラリが不足しており, 例えば`std::ranges::to`などが使えませんでした.
 
-そこで, 計算機サーバにGCC14を入れることにしました.
-**グローバルに設定すると他ユーザが困る可能性があるので, サーバの個人ディレクトリのみでGCC14を使い, C++23を使えるようにします.**
-他ユーザもC++23を使いたい場合は, そのユーザの個人ディレクトリで同様の作業を行えばOKです. **一人あたり約1.7GBの追加容量で利用可能です.**
+そこで, 計算機サーバにGCC14を入れることにしました. 本記事は, そのやり方と解説になります.
+
+**グローバルに設定すると他ユーザが困る可能性があるので, サーバの個人ディレクトリのみでGCC14を使い, C++23を使えるようにします.** 他ユーザもC++23を使いたい場合は, そのユーザの個人ディレクトリで同様の作業を行えばOKです. **一人あたり約1.7GBの追加容量で利用可能です.**
 
 :::details 目次
 - [本記事のモチベーション](#本記事のモチベーション)
@@ -29,17 +28,24 @@ published: true
   - [ビルド設定](#ビルド設定)
   - [ビルドとインストール](#ビルドとインストール)
   - [パスを通す](#パスを通す)
+  - [動作確認](#動作確認)
 - [おわりに](#おわりに)
 
 :::
+
+
 
 # 前提条件
 読者に求めること:
 - SSHでサーバに入れる
 - Linux系の基本的な知識があり, 基本的な操作ができる
 
+著者の計算機サーバのユースケース:
+- ソースをいじるのはパラメータの書き換え(py使用)だけ.
+- あとはソースのコンパイルと実行だけ行う(開発はローカルで行う).
+
 ## 著者の環境
-重要と思われる情報のみ記載します.
+作業前の環境について, 重要と思われる情報のみ記載します.
 
 ### マシン関係
 ```cpp
@@ -55,7 +61,7 @@ Rocky Linux release 8.10 (Green Obsidian)
 Linux aurora 4.18.0-553.22.1.el8_10.x86_64
 #1 SMP Wed Sep 25 09:20:43 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
 ```
-Rocky Linuxは, "RHELと100%バグ互換性がある"オープンソースです. ここでは, RHELとほぼ同じと考えて差し支えありません.
+[Rocky Linux](https://rockylinux.org/ja-JP)は, "RHELと100%バグ互換性がある"オープンソースです. ここでは, RHELとほぼ同じと考えて差し支えありません.
 
 ### C++関係
 コンパイラにはGCCを使用します.
@@ -187,25 +193,44 @@ stdoutが1, stderrが2です. 0はstdin(標準入力)です.
    ```
 
 
-動作確認: C++23の機能を含んだ下記コードをコンパイル・実行できれば完了✅️
-```cpp
-#include <ranges>
-#include <vector>
-#include <iostream>
+## 動作確認
+1. g++のパスと情報を確認
+   ```cpp
+   which g++
+   // 下記のようになるはず (~は$HOMEのこと.)
+   ~/local/gcc/14.3.0/bin/g++
+   ```
+   ```cpp
+   g++ -v
+   // およそ下記のようになるはず
+   Using built-in specs.
+   COLLECT_GCC=g++
+   COLLECT_LTO_WRAPPER=/home/{yourname}/local/gcc/14.3.0/libexec/gcc/x86_64-pc-linux-gnu/14.3.0/lto-wrapper
+   Target: x86_64-pc-linux-gnu
+   Configured with: ../gcc-14.3.0/configure --prefix=/home/{yourname}/local/gcc/14.3.0 --enable-languages=c,c++ --disable-multilib --enable-lto --enable-checking=release --with-system-zlib
+   Thread model: posix
+   Supported LTO compression algorithms: zlib zstd
+   gcc version 14.3.0 (GCC)
+   ```
+2. C++23の機能を含んだ下記コードをコンパイル・実行できれば完了✅️
+   ```cpp
+   #include <ranges>
+   #include <vector>
+   #include <iostream>
 
-// 偶数を抽出して2倍し, vector<int>とするだけのコード.
-// std::ranges:toはC++23の機能.
-int main() {
-    std::vector<int> data = {1, 2, 3, 4, 5, 6};
+   // 偶数を抽出して2倍し, vector<int>とするだけのコード.
+   // std::ranges:toはC++23の機能.
+   int main() {
+       std::vector<int> data = {1, 2, 3, 4, 5, 6};
 
-    auto result = data
-        | std::views::filter([](int x) { return x % 2 == 0; })
-        | std::views::transform([](int x) { return x * 2; })
-        | std::ranges::to<std::vector<int>>();
+       auto result = data
+           | std::views::filter([](int x) { return x % 2 == 0; })
+           | std::views::transform([](int x) { return x * 2; })
+           | std::ranges::to<std::vector<int>>();
 
-    for (int x : result) std::cout << x << " ";  // 出力: 4 8 12
-}
-```
+       for (int x : result) std::cout << x << " ";  // 出力: 4 8 12
+   }
+   ```
 
 
 
