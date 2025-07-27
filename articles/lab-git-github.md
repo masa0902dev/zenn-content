@@ -442,26 +442,10 @@ Two-factor methods: `Authenticator app`の`Edit`をクリックして説明に�
 - [WindowsでGitとSSHキーを使ってGitHubを安全に使う方法](https://zenn.dev/aoikoala/articles/388eb861249780)
 
 
+
 # 5. おわりに
-## Next Step!
 これで設定が完了し、Git, GithubをWindows OSで使えるようになりました！
 
 私の場合は本記事の後にハンズオンを行い, 研究室全体でGit, Githubを使ってもらいました. その際の記事は書いていないので載せられないのですが, エンジニアの方が書いた入門記事や動画はたくさんありますから, そちらを参照されるとよいかと思います.
 
 動画の例: [【Git入門講座 合併版】この動画1本でGitとGitHubの基礎をゼロからマスター！【初心者向け】](https://www.youtube.com/watch?v=WHwuNP4kalU)
-
-
-
-## BONUS!
-:::details もしGit, Githubの導入にメンバーや教員が難色を示している場合...
-[セクション「研究領域におけるGit, Githubの活用実績」](http://localhost:8000/articles/lab-git-github#%E7%A0%94%E7%A9%B6%E9%A0%98%E5%9F%9F%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8Bgit%2C-github%E3%81%AE%E6%B4%BB%E7%94%A8%E5%AE%9F%E7%B8%BE)を見せたり他の導入実績を提示したりして、「研究領域でもこんなに活用されている！」「これが業界標準になっている！」などと説得するのが良いかと思います。実際に使っているところを見せることで、その便利さを実感してもらうのも良いかもしれません。
-
-追記: こちらの記事が「上司の説得」という観点でとても参考になります!
-https://www.xlsoft.com/jp/blog/blog/2024/09/13/%E4%BB%8A%E3%81%95%E3%82%89%E8%81%9E%E3%81%91%E3%81%AA%E3%81%84-git%EF%BC%9A%E5%9F%BA%E7%A4%8E%E3%81%8B%E3%82%89%E4%BC%9A%E7%A4%BE%E3%81%B8%E3%81%AE%E8%AA%AC%E5%BE%97%E3%81%BE%E3%81%A7-post-77716/
-
-また、Git, Github, Github Organizationなどの導入について疑問や不安がある場合、私にご連絡いただくことも可能です。特に非情報系の研究室で、コード開発やプロジェクト運営の品質向上・効率化が (ソフトウェア業界で使用されているツールの有効活用などによって) 実現されることを自分は望んでいます。
-
-Email: `miwa0902res@gmail.com`
-
-もちろんZennのコメントでも！
-:::
