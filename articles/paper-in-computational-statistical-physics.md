@@ -3,7 +3,7 @@ title: "【計算統計物理】論文ノート、英単語や用語ノート"
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["研究", "計算統計物理", "論文", "英語"]
-published: true
+published: false
 ---
 
 # これは何？
