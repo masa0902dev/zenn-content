@@ -10,14 +10,14 @@ published: true
 
 # モチベーション
 
-研究の週報を毎週GitHubリポジトリにアップロードしていましたが、ゼミ前にアップロードするのをよく忘れてしまっていました。また、週1回という高頻度で行う作業のため、自動化することにしました。
+研究の週報を毎週GitHubリポジトリにアップロードしていましたが, ゼミ前にアップロードするのをよく忘れてしまっていました. また, 週1回という高頻度で行う作業のため, 自動化することにしました.
 
-今回の自動化では、以下を実現します。
+今回の自動化では, 以下を実現します.
 
 - Keynote (.key) ファイルをPDFに変換する
 - GitHubリポジトリへgit push する
 - ローカルのPDFを削除する
-- launchdで定刻に自動実行する（週4回: 月・火・火・金）
+- launchdで定刻に自動実行する (週4回: 月・火・火・金)
 
 実際のコードはGitHubに公開しています:
 
@@ -27,7 +27,7 @@ https://github.com/masa0902dev/automation-weekly-report
 
 # 前提
 - Shell, Python, Git/GitHubの基礎知識があること
-- GitHubとSSH通信できる状態であること（未設定の場合は[下記の記事](https://zenn.dev/masa0902dev/articles/lab-git-github#4.-github%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9)を参考にSSHキーの生成と登録を行ってください）
+- GitHubとSSH通信できる状態であること (未設定の場合は[下記の記事](https://zenn.dev/masa0902dev/articles/lab-git-github#4.-github%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9)を参考にSSHキーの生成と登録を行ってください)
 
 https://zenn.dev/masa0902dev/articles/lab-git-github#4.-github%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9
 
@@ -50,18 +50,18 @@ my-automation
     └── miwa                         # GitHubリポジトリ（週報の保存先）
 ```
 
-`miwa` は週報をpushするGitHubリポジトリをcloneしたディレクトリです。他の自動化とは分けるために `my-automation/weekly/` 以下にまとめています。
+`miwa` は週報をpushするGitHubリポジトリをcloneしたディレクトリです. 他の自動化とは分けるために `my-automation/weekly/` 以下にまとめています.
 
 ## 動作フロー
 
 1. 今月・先月のKeynoteファイルが指定ディレクトリに存在するか確認する
-2. AppleScriptを使ってKeynoteをPDFに書き出す（`/tmp` に一時保存）
+2. AppleScriptを使ってKeynoteをPDFに書き出す (`/tmp` に一時保存)
 3. PDFをGitリポジトリディレクトリに移動する
 4. `git add`, `git commit`, `git push` を実行する
 5. ローカルに残ったPDFを削除する
 
-今月と先月の2か月分を対象にしているのは、月をまたいだタイミングで先月分を更新したい場合があるためです。
-また、最後にローカルのPDFを削除しているのは、次回実行時に更新されたPDFをコミットするためです（削除しないと, 変更があるにも関わらず `git status` で変更なしとなってしまう場合があります）。
+今月と先月の2か月分を対象にしているのは, 月をまたいだタイミングで先月分を更新したい場合があるためです.
+また, 最後にローカルのPDFを削除しているのは, 次回実行時に更新されたPDFをコミットするためです (削除しないと, 変更があるにも関わらず `git status` で変更なしとなってしまう場合があります).
 
 
 
@@ -189,9 +189,9 @@ if __name__ == "__main__":
     print("\n")
 ```
 
-冒頭の `GIT_SSH_COMMAND` の設定は、後述するlaunchdのSSH問題への対処です。
+冒頭の `GIT_SSH_COMMAND` の設定は, 後述するlaunchdのSSH問題への対処です.
 
-ファイル名のルールとして、`weeklyYYYYMM.key`をYYYY年MM月の週報として扱います。（例: `weekly202605.key` → 2026年5月の週報）
+ファイル名のルールとして, `weeklyYYYYMM.key`をYYYY年MM月の週報として扱います. (例: `weekly202605.key` → 2026年5月の週報)
 
 ## com.masa.weekly.push.plist
 
@@ -252,11 +252,11 @@ if __name__ == "__main__":
 </plist>
 ```
 
-`ProgramArguments` の先頭に `/usr/bin/caffeinate -i` を指定しています。これにより、スクリプト実行中にmacOSがスリープに入らないようにしています。なお、PCがスリープ中はlaunchdによるジョブ実行はされません。スリープが解除されたタイミングで実行されます。
+`ProgramArguments` の先頭に `/usr/bin/caffeinate -i` を指定しています. これにより, スクリプト実行中にmacOSがスリープに入らないようにしています. なお, PCがスリープ中はlaunchdによるジョブ実行はされません. スリープが解除されたタイミングで実行されます.
 
-`StartCalendarInterval` の `Weekday` は `0` が日曜日、`1` が月曜日で始まります。上記の設定では, 月（14:30）・火（14:30）・火（18:00）・金（14:30）の週4回実行します。火曜日の2回分は、ゼミ前の分（14:30）・ゼミ後に追記した内容をアップロードするための分（18:00）です。
+`StartCalendarInterval` の `Weekday` は `0` が日曜日, `1` が月曜日で始まります. 上記の設定では, 月 (14:30)・火 (14:30)・火 (18:00)・金 (14:30) の週4回実行します. 火曜日の2回分は, ゼミ前の分 (14:30)・ゼミ後に追記した内容をアップロードするための分 (18:00) です.
 
-plistで指定するパスはエイリアスや相対パスが使用できないため、pythonのパスも絶対パスで指定する必要があることに注意.
+plistで指定するパスはエイリアスや相対パスが使用できないため, pythonのパスも絶対パスで指定する必要があることに注意.
 
 
 
@@ -272,7 +272,7 @@ python3 -m pip install -r requirements.txt
 
 ## 2. main.py の設定変更
 
-以下の変数を自身の環境に合わせて変更してください。
+以下の変数を自身の環境に合わせて変更してください.
 
 - `SSH_KEY`: GitHubとのSSH秘密鍵ファイルパス
 - `REPO_DIR`: 週報をpushするGitリポジトリのルートパス
@@ -281,13 +281,13 @@ python3 -m pip install -r requirements.txt
 
 ## 3. plist の設定変更
 
-以下の箇所を変更してください。
+以下の箇所を変更してください.
 
-- `Label`: ファイル名と合わせて変更（例: `com.yourname.weekly.push`）
+- `Label`: ファイル名と合わせて変更 (例: `com.yourname.weekly.push`)
 - Pythonのパス: `which python3` などで確認した絶対パスに変更
 - `main.py` のパス: 自身のファイルパスの絶対パスに変更
 - `StartCalendarInterval`: 実行したい日時に変更
-- `StandardOutPath`, `StandardErrorPath`: ログ出力先（そのままでも問題ありません）
+- `StandardOutPath`, `StandardErrorPath`: ログ出力先 (そのままでも問題ありません)
 
 ## 4. LaunchAgents にplistのシンボリックリンクを配置
 
@@ -301,7 +301,7 @@ ln -s "$(pwd)/com.masa.weekly.push.plist" ~/Library/LaunchAgents/com.masa.weekly
 launchctl load ~/Library/LaunchAgents/com.masa.weekly.push.plist
 ```
 
-plistの内容を変更した場合は、`unload` してから `load` すると確実に反映されます。
+plistの内容を変更した場合は, `unload` してから `load` すると確実に反映されます.
 
 ```bash
 launchctl unload ~/Library/LaunchAgents/com.masa.weekly.push.plist
@@ -324,7 +324,7 @@ launchctl load  ~/Library/LaunchAgents/com.masa.weekly.push.plist
 launchctl start com.masa.weekly.push
 ```
 
-ログを確認して、下記のように出力されていれば成功です。
+ログを確認して, 下記のように出力されていれば成功です.
 
 ```log
 weekly report automation at 2026-05-16 13:30:05
@@ -341,11 +341,11 @@ Removed local file: /yourpath/weekly202605.pdf
 Removed local file: /yourpath/weekly202604.pdf
 ```
 
-エラーが発生した場合は `weekly_err.log` を確認してください。
+エラーが発生した場合は `weekly_err.log` を確認してください.
 
 # ハマりポイント: launchd が SSH エージェントを継承しない
 
-launchdで `git push` を実行しようとすると、以下のようなエラーが発生しました。
+launchdで `git push` を実行しようとすると, 以下のようなエラーが発生しました.
 
 ```log
 Error: ssh: connect to host github.com port 22: Undefined error: 0
@@ -357,9 +357,9 @@ and the repository exists.
 [FAILED] Script stopped due to an error in command.
 ```
 
-**原因:** launchdによって起動されたプロセスは、ログインセッションのSSHエージェント（`ssh-agent`）を継承しません。通常のターミナルでは `SSH_AUTH_SOCK` 環境変数が設定されており、SSH鍵が自動的に読み込まれますが、launchd経由で実行された場合はこの変数がなく、SSHが秘密鍵を見つけられないため接続に失敗します。
+**原因:** launchdによって起動されたプロセスは, ログインセッションのSSHエージェント (`ssh-agent`) を継承しません. 通常のターミナルでは `SSH_AUTH_SOCK` 環境変数が設定されており, SSH鍵が自動的に読み込まれますが, launchd経由で実行された場合はこの変数がなく, SSHが秘密鍵を見つけられないため接続に失敗します.
 
-**解決策:** コード先頭で `GIT_SSH_COMMAND` 環境変数を設定し、SSH鍵を明示的に指定します。
+**解決策:** コード先頭で `GIT_SSH_COMMAND` 環境変数を設定し, SSH鍵を明示的に指定します.
 
 ```python
 SSH_KEY = path.expanduser("~/.ssh/id_ed25519")
@@ -370,13 +370,13 @@ os.environ.setdefault(
 ```
 
 - `-i {SSH_KEY}` で秘密鍵ファイルを明示的に指定する
-- `UseKeychain=yes` によりパスフレーズはmacOS Keychainから取得されるので、launchd環境でも対話なしで認証できる
-- `setdefault` を使っているので、手動実行時にすでに環境変数が設定されていれば上書きしない
+- `UseKeychain=yes` によりパスフレーズはmacOS Keychainから取得されるので, launchd環境でも対話なしで認証できる
+- `setdefault` を使っているので, 手動実行時にすでに環境変数が設定されていれば上書きしない
 
 # おわりに
 
-週報のPDF化とGitHubへのpushを自動化することで、ゼミ前後のアップロード忘れがなくなりました。
+週報のPDF化とGitHubへのpushを自動化することで, ゼミ前後のアップロード忘れがなくなりました.
 
-KeynoteのAppleScript書き出しの部分はPagesでも同様の対応が可能かと思います。PowerPointについては未確認のため、知見がある方はコメントをいただけると幸いです。
+KeynoteのAppleScript書き出しの部分はPagesでも同様の対応が可能かと思います. PowerPointについては未確認のため, 知見がある方はコメントをいただけると幸いです.
 
 コード全体はGitHubに公開しています: https://github.com/masa0902dev/automation-weekly-report
