@@ -20,7 +20,6 @@ published: true
 - launchdで定刻に自動実行する (週4回: 月・火・火・金)
 
 実際のコードはGitHubに公開しています:
-
 https://github.com/masa0902dev/automation-weekly-report
 
 
@@ -68,7 +67,11 @@ my-automation
 # コード解説
 
 ## main.py
+冒頭の `GIT_SSH_COMMAND` の設定は, 後述するlaunchdのSSH問題への対処です.
 
+ファイル名のルールとして, `weeklyYYYYMM.key`をYYYY年MM月の週報として扱います. (例: `weekly202605.key` → 2026年5月の週報)
+
+:::details コード全体
 ```python
 import os
 from os import path
@@ -188,13 +191,16 @@ if __name__ == "__main__":
     main()
     print("\n")
 ```
-
-冒頭の `GIT_SSH_COMMAND` の設定は, 後述するlaunchdのSSH問題への対処です.
-
-ファイル名のルールとして, `weeklyYYYYMM.key`をYYYY年MM月の週報として扱います. (例: `weekly202605.key` → 2026年5月の週報)
+:::
 
 ## com.masa.weekly.push.plist
+`ProgramArguments` の先頭に `/usr/bin/caffeinate -i` を指定しています. これにより, スクリプト実行中にmacOSがスリープに入らないようにしています. なお, PCがスリープ中はlaunchdによるジョブ実行はされず, スリープが解除されたタイミングで実行されます.
 
+`StartCalendarInterval` の `Weekday` は `0` が日曜日, `1` が月曜日で始まります. 上記の設定では, 月 (14:30)・火 (14:30)・火 (18:00)・金 (14:30) の週4回実行します. 火曜日の2回分は, ゼミ前の分・ゼミ後に追記した内容をアップロードするための分です.
+
+plistで指定するパスはエイリアスや相対パスが使用できないため, pythonのパスも絶対パスで指定する必要があることに注意.
+
+:::details コード全体
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -251,12 +257,7 @@ if __name__ == "__main__":
 </dict>
 </plist>
 ```
-
-`ProgramArguments` の先頭に `/usr/bin/caffeinate -i` を指定しています. これにより, スクリプト実行中にmacOSがスリープに入らないようにしています. なお, PCがスリープ中はlaunchdによるジョブ実行はされません. スリープが解除されたタイミングで実行されます.
-
-`StartCalendarInterval` の `Weekday` は `0` が日曜日, `1` が月曜日で始まります. 上記の設定では, 月 (14:30)・火 (14:30)・火 (18:00)・金 (14:30) の週4回実行します. 火曜日の2回分は, ゼミ前の分 (14:30)・ゼミ後に追記した内容をアップロードするための分 (18:00) です.
-
-plistで指定するパスはエイリアスや相対パスが使用できないため, pythonのパスも絶対パスで指定する必要があることに注意.
+:::
 
 
 
@@ -376,7 +377,11 @@ os.environ.setdefault(
 # おわりに
 
 週報のPDF化とGitHubへのpushを自動化することで, ゼミ前後のアップロード忘れがなくなりました.
+KeynoteのAppleScript書き出しの部分はPagesでも同様の対応が可能かと思います. 
 
-KeynoteのAppleScript書き出しの部分はPagesでも同様の対応が可能かと思います. PowerPointについては未確認のため, 知見がある方はコメントをいただけると幸いです.
+:::message
+PowerPointについては未確認のため, 知見がある方はコメントをいただけると幸いです.
+:::
 
-コード全体はGitHubに公開しています: https://github.com/masa0902dev/automation-weekly-report
+コード全体はGitHubに公開しています:
+https://github.com/masa0902dev/automation-weekly-report
