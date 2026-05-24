@@ -311,7 +311,7 @@ launchctl load  ~/Library/LaunchAgents/com.masa.weekly.push.plist
 
 ## 6. Keynoteファイルの準備
 
-`SOURCE_DIR` に `weeklyYYYYMM.key` の形式でKeynoteファイルを置いてください。
+`SOURCE_DIR` に `weeklyYYYYMM.key` の形式でKeynoteファイルを置いてください.
 
 ```text
 例: weekly202605.key  →  2026年5月の週報として扱われます
@@ -319,7 +319,7 @@ launchctl load  ~/Library/LaunchAgents/com.masa.weekly.push.plist
 
 ## 7. 動作確認
 
-`launchctl start` で即時実行できます。
+`launchctl start` で即時実行できます.
 
 ```bash
 launchctl start com.masa.weekly.push
