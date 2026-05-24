@@ -194,11 +194,12 @@ if __name__ == "__main__":
 :::
 
 ## com.masa.weekly.push.plist
-`ProgramArguments` の先頭に `/usr/bin/caffeinate -i` を指定しています. これにより, スクリプト実行中にmacOSがスリープに入らないようにしています. なお, PCがスリープ中はlaunchdによるジョブ実行はされず, スリープが解除されたタイミングで実行されます.
+plistファイルの主なキーは下記の通りです.
 
-`StartCalendarInterval` の `Weekday` は `0` が日曜日, `1` が月曜日で始まります. 上記の設定では, 月 (14:30)・火 (14:30)・火 (18:00)・金 (14:30) の週4回実行します. 火曜日の2回分は, ゼミ前の分・ゼミ後に追記した内容をアップロードするための分です.
-
-plistで指定するパスはエイリアスや相対パスが使用できないため, pythonのパスも絶対パスで指定する必要があることに注意.
+- **Label**: ジョブを一意に識別するID. `launchctl start <Label>` で手動実行する際にも使います.
+- **ProgramArguments**: 実行するコマンドと引数を配列で指定します. 先頭に `/usr/bin/caffeinate -i` を置くことで, スクリプト実行中にmacOSがスリープに入らないようにしています. pythonのパスはエイリアスや相対パスが使えないため絶対パスで指定する必要があります.
+- **StartCalendarInterval**: 実行日時を指定します. `Weekday` は `0` が日曜日, `1` が月曜日で始まります. 複数の辞書を配列として与えることで複数のスケジュールを設定できます. なお, PCがスリープ中はlaunchdによるジョブ実行はされず, スリープが解除されたタイミングで実行されます. 上記の設定では月 (14:30)・火 (14:30)・火 (18:00)・金 (14:30) の週4回実行します. (火曜日の2回分は, ゼミ前の分・ゼミ後に追記した内容をアップロードするための分です.)
+- **StandardOutPath / StandardErrorPath**: 標準出力・標準エラーの出力先ファイルパスです.
 
 :::details コード全体
 ```xml
@@ -344,6 +345,12 @@ Removed local file: /yourpath/weekly202604.pdf
 
 エラーが発生した場合は `weekly_err.log` を確認してください.
 
+よくあるケースと対処法:
+
+- `Skip: /path/to/weeklyYYYYMM.key not found.` と出る場合: `SOURCE_DIR` のパス設定かファイル名が正しくない. ファイル名は `weeklyYYYYMM.key` の形式である必要があります.
+- `No changes to commit.` と出る場合: 前回の実行からKeynoteファイルが更新されていないため, push はスキップされます. 正常動作です.
+- SSH認証エラーが出る場合: 「ハマりポイント」セクションを参照してください.
+
 # ハマりポイント: launchd が SSH エージェントを継承しない
 
 launchdで `git push` を実行しようとすると, 以下のようなエラーが発生しました.
@@ -358,7 +365,7 @@ and the repository exists.
 [FAILED] Script stopped due to an error in command.
 ```
 
-**原因:** launchdによって起動されたプロセスは, ログインセッションのSSHエージェント (`ssh-agent`) を継承しません. 通常のターミナルでは `SSH_AUTH_SOCK` 環境変数が設定されており, SSH鍵が自動的に読み込まれますが, launchd経由で実行された場合はこの変数がなく, SSHが秘密鍵を見つけられないため接続に失敗します.
+**原因:** macOSにログインすると `ssh-agent` というSSH鍵を管理するプロセスが起動します. ターミナルはこのエージェントに接続することで, パスフレーズの入力なしにSSH認証できます. しかし, launchdによって起動されたプロセスは`ssh-agent`を継承しません. 通常のターミナルでは `SSH_AUTH_SOCK` 環境変数が設定されており, SSH鍵が自動的に読み込まれますが, launchd経由で実行された場合はこの変数がなく, SSHが秘密鍵を見つけられないため接続に失敗します.
 
 **解決策:** コード先頭で `GIT_SSH_COMMAND` 環境変数を設定し, SSH鍵を明示的に指定します.
 
