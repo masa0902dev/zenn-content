@@ -40,6 +40,7 @@ cmd+alt+M : $$\n$$
 ## zenn preview for github.dev
 command pallet -> Show zenn Preview
 VScode内でzennプレビューを閲覧できる。タブでサイドバー移動できる。
+- または`npx zenn preview`
 
 ## PDF preview
 - alt up/down : ページ移動
