@@ -87,16 +87,16 @@ https://zenn.dev/masa0902dev/articles/lab-git-github
 :::details 見た目
 
 Word ↓
-![Wordへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc-chromeheadless/appearance-word1.png)
-![Wordへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc-chromeheadless/appearance-word2.png)
+![Wordへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc/appearance-word1.png)
+![Wordへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc/appearance-word2.png)
 
 PDF ↓
-![PDFへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc-chromeheadless/appearance-pdf1.png)
-![PDFへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc-chromeheadless/appearance-pdf2.png)
+![PDFへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc/appearance-pdf1.png)
+![PDFへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc/appearance-pdf2.png)
 
 HTML ↓
-![HTMLへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc-chromeheadless/appearance-html1.png)
-![HTMLへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc-chromeheadless/appearance-html2.png)
+![HTMLへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc/appearance-html1.png)
+![HTMLへの変換結果](/images/markdown-to-word-pdf-html-with-pandoc/appearance-html2.png)
 
 元のMarkdown ↓
 
@@ -181,7 +181,7 @@ $$
 
 変換後も画像がちゃんと表示されます. サイズ指定も`(width=150px)`のように可能.
 
-![サンプル画像: 愛犬](images/markdown-to-word-pdf-html-with-pandoc-chromeheadless/bolt_512.jpeg){width=150px}
+![サンプル画像: 愛犬](images/markdown-to-word-pdf-html-with-pandoc/bolt_512.jpeg){width=150px}
 
 
 ## 見出し2：水平線
