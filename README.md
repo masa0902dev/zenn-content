@@ -1,7 +1,7 @@
 # masa's Zenn Article & Books
-[HOME](https://zenn.dev/masa0902dev)
+[Zenn webpage](https://zenn.dev/masa0902dev)
 
-- 勉強ノートは、ノートしてからGPTにまとめてもらうと良い。
+[Google Analytics](https://analytics.google.com/analytics/web/?hl=ja#/a358725626p493406567/reports/intelligenthome)
 
 ```bash
 npx zenn new:article --slug 記事のスラッグ
