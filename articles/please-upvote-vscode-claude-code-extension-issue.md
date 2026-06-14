@@ -1,8 +1,8 @@
 ---
-title: "【拡散希望】VScode拡張機能ClaudeCodeのGitHub IssueにUpvoteを!"
-emoji: "🐙"
+title: "VScode拡張機能ClaudeCodeのIssue#66291にUpvoteを!"
+emoji: "❗️"
 type: "idea" # tech: 技術記事 / idea: アイデア
-topics: ["VScode", "ClaudeCode", "github", "issue"]
+topics: ["VScode", "ClaudeCode", "issue"]
 published: true
 ---
 
