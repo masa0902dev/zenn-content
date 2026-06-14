@@ -17,8 +17,8 @@ VScodeの拡張機能 `Claude Code for VScode` (by Anthropic) のチャット入
 https://github.com/anthropics/claude-code/issues/66291
 
 上記Issueページにアクセスし, 下記の2つをどうかお願いします.
-- dvdrtrgn氏(投稿者)のコメントに「👍」をつける.
-- Botのコメントに「👎」をつける.
+- dvdrtrgn氏(投稿者)のコメントに👍をつける.
+- Botのコメントに👎をつける.
 
 Upvoteが集まることで, Anthropic社がこの問題を優先対応する可能性が高まります. また, Botにbadを付けないとIssueが自動クローズされてしまいます. (過去も複数の類似Issueが自動クローズされています…)
 
