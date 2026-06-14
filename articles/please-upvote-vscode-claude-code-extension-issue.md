@@ -1,5 +1,5 @@
 ---
-title: "VScode拡張機能ClaudeCodeのIssue#66291にUpvoteを!"
+title: "Issue#66291にUpvoteを! VScode拡張機能ClaudeCodeの不便なバグ"
 emoji: "❗️"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["VScode", "ClaudeCode", "issue"]
