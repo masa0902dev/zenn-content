@@ -9,7 +9,7 @@ published: true
 
 
 # 本記事のモチベーション
-著者(いち学生)の研究室の計算機サーバでは, デフォルトでg++コンパイラが`GCC8.5`, C++が`C++17`しか使えませんでした. 私としては, 関数型プログラミング的な表現が便利なのでC++23を使いたい.
+著者(いち学生)のラボの計算機サーバでは, デフォルトでg++コンパイラが`GCC8.5`, C++が`C++17`しか使えませんでした. 私としては, 関数型プログラミング的な表現が便利なのでC++23を使いたい.
 
 サーバ上でC++23を使うこと自体は簡単でした. `/opt/rh/gcc-toolset-13`があったので, その中にあるC++23を使えばよいです. しかし, gcc-toolset-13では標準ライブラリが不足しており, 例えば`std::ranges::to`などが使えませんでした.
 
@@ -238,7 +238,15 @@ stdoutが1, stderrが2です. 0はstdin(標準入力)です.
 これにて, RHEL8計算機サーバで, 他ユーザへの影響なしでGCC14のC++23を使えます.
 一人あたり約1.7GBの追加容量で利用可能なので, 複数人でも余裕です.
 
-ちなみにHPCのC++23対応状況ですが, 例えば日本の「富岳」や2025年6月のTOP500で1位だった「El Capitan」はC++17までしかサポートしていないようです. ソースはこちら → [富岳](https://www.fujitsu.com/jp/about/businesspolicy/tech/fugaku/specifications/)(しかもC++17サブセット), [El Capitan](https://cpe.ext.hpe.com/docs/24.07/guides/CCE/HPE_Cray_Compiling_Environment_Release_Overview_18.0.0_S-5212.html?utm_source=chatgpt.com)(使用するCray Compilerがgcc-toolset-13をサポート).
-しかし, 2027年には富岳に変わる[「Monaka」](https://www.fujitsu.com/jp/about/research/technology/fujitsu-monaka/)もリリース予定とのことですし, 私(学部4年)がスパコンを頻繁に使用する頃には対応しているだろう, と楽観視してC++23を使うことにします.
+ちなみにHPCのC++23対応状況ですが, 例えば日本の「富岳」や2025年6月のTOP500で1位だった「El Capitan」はC++17までしかサポートしていないようです. ソースはこちら ↓
+- [富岳](https://www.fujitsu.com/jp/about/businesspolicy/tech/fugaku/specifications/): しかもC++17サブセット
+- [El Capitan](https://cpe.ext.hpe.com/docs/24.07/guides/CCE/HPE_Cray_Compiling_Environment_Release_Overview_18.0.0_S-5212.html?utm_source=chatgpt.com): 使用するCray Compilerがgcc-toolset-13をサポート
+
+しかし, 2027年には富岳に変わる[「Monaka」](https://www.fujitsu.com/jp/about/research/technology/fujitsu-monaka/)もリリース予定とのことですし, 私がスパコンを頻繁に使用する頃には対応しているだろう, と楽観視してC++23を使うことにします.
 
 **本記事で誤りや疑問等ありましたら, コメント頂けると幸いです!**
+
+:::message
+2026-06追記:
+結局C++17を使っています…残念😢 世間はC++26の話をしているというのに……
+:::
