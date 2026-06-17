@@ -1,8 +1,8 @@
 ---
-title: "[研究関連の自動化] 週報のPDF化とアップロードを自動化しよう"
+title: "週報のアップロードを自動化しよう"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["自動化", "launchd", "python"]
+topics: ["自動化", "launchd", "python", "github"]
 published: true
 ---
 
