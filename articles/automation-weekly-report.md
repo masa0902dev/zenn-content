@@ -1,5 +1,5 @@
 ---
-title: "週報のアップロードを自動化しよう"
+title: "macOSのlaunchdで, 週報のPDF化とアップロードを自動化しよう"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["自動化", "launchd", "python", "github"]
