@@ -23,14 +23,12 @@ https://github.com/masa0902dev/claude-code-rate
 Python 3 があれば動きます. 外部パッケージのインストールは不要です.
 
 ```sh
+# インストール
 git clone https://github.com/masa0902dev/claude-code-rate
+
+# パスを通す代わり: .zshrc に alias を追加 (bashの場合は.bashrc)
 cd claude-code-rate
-
-# 方法1: symlink (~/bin が PATH に入っている場合)
-ln -s "$(pwd)/clc" ~/bin/clc
-
-# 方法2: .zshrc に alias を追加
-echo "alias clc='$(pwd)/clc'" >> ~/.zshrc && source ~/.zshrc
+echo "alias clc='$(pwd)/clc.py'" >> ~/.zshrc && source ~/.zshrc
 ```
 `command not found: git`と表示される場合は, gitがインストールされていません. 下記の記事を参考にインストールして下さい. (Windows用の記事ですが, 該当部分はmacOSでも同様です)
 
@@ -60,10 +58,9 @@ watch -n 60 clc rate  # 60秒ごとにレート残量を表示
 
 もっと素早く実行したい場合: alias登録する
 ```sh
-# zshの場合
-echo "alias clc='clc rate'" >> ~/.zshrc && source ~/.zshrc
-# bashの場合
-echo "alias clc='clc rate'" >> ~/.bashrc && source ~/.bashrc
+# zshの場合 (bashの場合は.bashrc)
+echo "alias clc='$(pwd)/clc.py rate'" >> ~/.zshrc && source ~/.zshrc
+clc  # これだけでレート残量を表示
 ```
 
 ## 手軽にカスタマイズ
