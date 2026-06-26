@@ -1,5 +1,5 @@
 ---
-title: "Claude Codeのレート残量をCLI一発で確認する"
+title: "Claude Codeのレート残量はCLI一発で確認しよう"
 emoji: "📊"
 type: "tech"
 topics: ["claudecode", "python", "cli"]
