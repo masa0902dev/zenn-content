@@ -66,10 +66,18 @@ clc rate          # レート残量を表示
 clc rate --json   # APIの生レスポンスをjsonで表示
 ```
 
-常時表示したい場合:
+常時表示したい場合: watchを使う
 ```sh
 brew install watch
 watch -n 60 clc rate  # 60秒ごとにレート残量を表示
+```
+
+もっと素早く実行したい場合: alias登録する
+```sh
+# zshの場合
+echo "alias clc='clc rate'" >> ~/.zshrc && source ~/.zshrc
+# bashの場合
+echo "alias clc='clc rate'" >> ~/.bashrc && source ~/.bashrc
 ```
 
 ## 手軽にカスタマイズ
