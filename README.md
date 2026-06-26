@@ -12,6 +12,8 @@ npx zenn new:article --slug 記事のスラッグ
 画像
 - 画像は/imagesに置く必要がある．
 - 画像パスは`![altテキスト](/image/img-filename.png)`のように絶対パス必須．
+- zennでは`<img width="400" src="">`は不可らしい. Markdown Enhancedによる(?)`![](){width=400}`は不可だった.
+  - `![](/image/img-filename.png =400x)`と書く. =400px ではなく =400x なので注意.
 
 **ディレクトリ分け**
 TODO: シンボリックリンクを使えば上手く構造化できるのでは？
