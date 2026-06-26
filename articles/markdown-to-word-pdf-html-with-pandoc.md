@@ -185,7 +185,7 @@ $$
 
 [Pandoc公式サイト](https://pandoc.org) へのリンクです。
 
-変換後も画像がちゃんと表示されます. サイズ指定も`(width=150px)`のように可能.
+変換後も画像がちゃんと表示されます. サイズ指定も`{width=150px}`のように可能.
 
 ![サンプル画像: 愛犬](images/markdown-to-word-pdf-html-with-pandoc/bolt_512.jpeg){width=150px}
 
