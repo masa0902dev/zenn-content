@@ -1,5 +1,5 @@
 ---
-title: "Claude Codeのレート残量をCLI一発で確認しよう"
+title: "Claude Codeのレート残量をCLI一発で確認する ~ もうブラウザ確認なんてしない ~"
 emoji: "📊"
 type: "tech"
 topics: ["claudecode", "python", "cli"]
@@ -7,7 +7,7 @@ published: true
 ---
 
 
-Claude Codeを使っていると, レート制限 (5時間枠・週間枠・追加枠) の残量が気になる場面が多いです. 「あと何%使える?」「あと何時間でリセットされる?」を確認するたびにブラウザを開くのが手間だったので, ターミナルで `clc rate` と打つだけで確認できるCLIツールをPythonで作りました.
+Claude Codeを使っていると, レート残量 (5時間枠・週間枠・追加枠) が気になります. 「あと何%使える?」「あと何時間でリセットされる?」を確認するたびにブラウザを開くのが手間だったので, ターミナルで `clc rate` と打つだけで確認できるCLIツールをPythonで作りました.
 
 ![実際の見た目](/images/clc-claude-code-rate/img-cmd.png)
 
@@ -25,9 +25,12 @@ Python 3 があれば動きます. 外部パッケージのインストールは
 ```sh
 # インストール
 git clone https://github.com/masa0902dev/claude-code-rate
-
-# パスを通す代わり: .zshrc に alias を追加 (bashの場合は.bashrc)
 cd claude-code-rate
+
+# Pythonファイルを単体で実行可能にする
+chmod +x clc.py
+
+# パスを通す代わり: .zshrc に alias を追加 (bashの場合は .bashrc へ)
 echo "alias clc='$(pwd)/clc.py'" >> ~/.zshrc && source ~/.zshrc
 ```
 `command not found: git`と表示される場合は, gitがインストールされていません. 下記の記事を参考にインストールして下さい. (Windows用の記事ですが, 該当部分はmacOSでも同様です)
@@ -58,7 +61,7 @@ watch -n 60 clc rate  # 60秒ごとにレート残量を表示
 
 もっと素早く実行したい場合: alias登録する
 ```sh
-# zshの場合 (bashの場合は.bashrc)
+# zshの場合 (bashの場合は .bashrc へ)
 echo "alias clc='$(pwd)/clc.py rate'" >> ~/.zshrc && source ~/.zshrc
 clc  # これだけでレート残量を表示
 ```
