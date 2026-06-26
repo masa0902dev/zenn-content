@@ -9,9 +9,7 @@ published: true
 
 Claude Codeを使っていると, レート残量 (5時間枠・週間枠・追加枠) が気になります. 「あと何%使える?」「あと何時間でリセットされる?」を確認するたびにブラウザを開くのが手間だったので, ターミナルで `clc rate` と打つだけで確認できるCLIツールをPythonで作りました.
 
-![実際の見た目](/images/clc-claude-code-rate/Screenshot%202026-06-27%20at%200.27.28.png){width=400}
-
-![実際の見た目](/images/clc-claude-code-rate/Screenshot%202026-06-27%20at%200.27.28.png){width=100}
+![実際の見た目](/images/clc-claude-code-rate/img-cmd.png =400x)
 
 https://github.com/masa0902dev/claude-code-rate
 
