@@ -3,7 +3,7 @@ title: "Claude Codeのレート残量をCLI一発で確認する"
 emoji: "📊"
 type: "tech"
 topics: ["claudecode", "python", "cli"]
-published: false
+published: true
 ---
 
 
