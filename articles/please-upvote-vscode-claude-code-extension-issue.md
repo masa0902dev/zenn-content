@@ -7,6 +7,19 @@ published: true
 ---
 
 
+:::message
+06/26 追記
+
+以前はissueの👍が2つだけでしたが, 6つまで増えていました!
+お陰様で, issueが現在もauto-closeされずに残っています, ありがとうございます.
+
+しかし未だ解決はされていません.
+引き続き, ご協力・拡散をよろしくお願いします!
+
+![follow-up-the-num-of-good.png](/images/please-upvote-vscode-claude-code-extension-issue/follow-up-the-num-of-good.png)
+:::
+
+
 # TL;DR
 VS Codeの拡張機能 `Claude Code for VS code` (by Anthropic) のチャット入力欄で, `ctrl+P` や `ctrl+F` といったmacOS標準のカーソル移動キーが効かない問題があります.
 
