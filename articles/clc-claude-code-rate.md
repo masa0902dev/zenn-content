@@ -9,6 +9,8 @@ published: true
 
 Claude Codeを使っていると, レート制限 (5時間枠・週間枠・追加枠) の残量が気になる場面が多いです. 「あと何%使える?」「あと何時間でリセットされる?」を確認するたびにブラウザを開くのが手間だったので, ターミナルで `clc rate` と打つだけで確認できるCLIツールをPythonで作りました.
 
+![実際の見た目](/images/clc-claude-code-rate/img-cmd.png)
+
 https://github.com/masa0902dev/claude-code-rate
 
 
@@ -38,28 +40,12 @@ https://zenn.dev/masa0902dev/articles/lab-git-github#3.-git%E3%81%AE%E5%A7%8B%E3
 Claude Codeにログイン済みであれば, これだけで使えます.
 認証情報はmacOS KeychainまたはClaude Codeの認証情報ファイルから自動取得します (後述. macOSだけでなくWindowsやLinuxでも可能).
 
-## 実行例
-
-```log
-❯ clc rate
-5Hours [██░░░░░░░░░░░]  17.0% used
-       resets in 01h59m
-
-Weekly [█░░░░░░░░░░░░]   4.0% used
-       resets in 6d,39m
-
-Extra  [███░░░░░░░░░░]  24.6% used
-       used $2.46
-```
-
-![実際の見た目](/images/clc-claude-code-rate/img-cmd.png)
-
-
-:::message alert
-短時間に何度も実行すると, APIのレートリミットにすぐ引っかかったので注意.
-:::
 
 ## コマンド一覧
+
+:::message alert
+短時間に何度も実行すると, APIのレートリミットに引っかかるので注意.
+:::
 
 ```sh
 clc rate          # レート残量を表示
