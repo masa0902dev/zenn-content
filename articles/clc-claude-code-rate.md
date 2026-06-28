@@ -240,3 +240,15 @@ def pad_display(text, width):
 macOSだけでなくWindowsでもそのまま使えるので, ぜひ使って頂けると嬉しいです! その際はZennのイイネ❤️やGitHubのスター⭐を頂けると励みになります! issueやPRも大歓迎です!!!
 
 https://github.com/masa0902dev/claude-code-rate
+
+
+
+:::message
+追記 2026/0628
+
+便利そうな下記OSSを発見しました. さらに多機能なCLIツールを使いたい方は, こちらが良さそうです.
+使ってみた方は感想を教えて頂けると幸いです…
+
+https://github.com/Maciek-roboblog/Claude-Code-Usage-Monitor/tree/main
+
+:::
