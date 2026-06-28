@@ -3,7 +3,7 @@ title: "〈アンサンブル平均〉"
 emoji: "🫶"
 type: "tech"
 topics: ["物理", "シミュレーション"]
-published: false
+published: true
 ---
 
 
