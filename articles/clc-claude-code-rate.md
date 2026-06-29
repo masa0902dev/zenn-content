@@ -44,10 +44,6 @@ Claude Codeにログイン済みであれば, これだけで使えます.
 
 ## コマンド一覧
 
-:::message alert
-短時間に何度も実行すると, APIのレートリミットに引っかかるので注意.
-:::
-
 ```sh
 clc rate          # レート残量を表示
 clc rate --json   # APIの生レスポンスをjsonで表示
@@ -56,7 +52,7 @@ clc rate --json   # APIの生レスポンスをjsonで表示
 常時表示したい場合: watchを使う
 ```sh
 brew install watch
-watch -n 60 clc rate  # 60秒ごとにレート残量を表示
+watch -n 60 clc rate  # 60秒ごとにレート残量を表示 (頻繁にし過ぎない)
 ```
 
 もっと素早く実行したい場合: alias登録する
@@ -89,8 +85,23 @@ clc  # これだけでレート残量を表示
 - **「認証情報が見つかりません」「トークンの有効期限が切れています」**
   → Claude Codeを一度起動するとトークンが自動更新されます. または, ウェブ上でClaudeにログインし直すとトークンが更新されます.
 
-:::message
+:::message alert
 本ツールはClaude Code内部のOAuth APIを利用しており, 公式のAPIではありません. 将来的に仕様変更や廃止の可能性があります.
+
+**追記: 2026/0629**
+
+Anthropicの規約によれば, OAuthトークンを使った自動アクセスは原則禁止です. また, そこで禁止している主旨は「第三者がユーザーのPro/Max枠を横流しして別サービスを提供すること」です.
+
+「自分の使用統計を自分で確認するだけの用途」等については明記がなく, 執行リスクは低いと考えられます. しかし, "native Anthropic applications"ではないことも事実です.
+
+著者の結論としては, このコードの利用は「字義上グレーゾーンだが, 主旨的には低リスク」と判断しています. 利用については自己責任でお願い致します. 例えば, CI/CDでの開発メンバー全員分の監視, のような利用は明確に規約違反だと考えられます. 
+
+[akchanさんから頂いたコメント](https://zenn.dev/link/comments/7d778a7b216bc8)を契機として, 調査・検討を下記Anthropic公式ページをもとに行いました. akchanさん, ありがとうございます.
+
+- https://code.claude.com/docs/en/legal-and-compliance#usage-policy
+- https://www.anthropic.com/legal/aup
+- https://www.anthropic.com/legal/consumer-terms
+
 :::
 
 ---
@@ -241,7 +252,7 @@ macOSだけでなくWindowsでもそのまま使えるので, ぜひ使って頂
 
 https://github.com/masa0902dev/claude-code-rate
 
-
+&nbsp;
 
 :::message
 追記 2026/0628
