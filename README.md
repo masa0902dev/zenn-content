@@ -1,7 +1,7 @@
 # masa's Zenn Article & Books
 [Zenn webpage](https://zenn.dev/masa0902dev)
 
-[Google Analytics](https://analytics.google.com/analytics/web/?hl=ja#/a358725626p493406567/reports/intelligenthome)
+[Google Analytics (author only)](https://analytics.google.com/analytics/web/?hl=ja#/a358725626p493406567/reports/intelligenthome)
 
 ```bash
 # npx zenn new:article --slug 記事のスラッグ
