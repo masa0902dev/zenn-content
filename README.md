@@ -4,10 +4,12 @@
 [Google Analytics](https://analytics.google.com/analytics/web/?hl=ja#/a358725626p493406567/reports/intelligenthome)
 
 ```bash
-npx zenn new:article --slug 記事のスラッグ
+# npx zenn new:article --slug 記事のスラッグ
+./zenn_new_article_and_make_dir.sh 記事のスラッグ
 ```
 - slugは記事・本ごとにユニークに。他ユーザーの記事で使用済みのslugも使用できない！
 - slugを変えると別の投稿として作成される！
+- 「記事Markdown作成 → CLC用ディレクトリ作成・PLAN.md作成 → PLAN.mdをエディタに開く」のshを使う.
 
 画像
 - 画像は/imagesに置く必要がある．
