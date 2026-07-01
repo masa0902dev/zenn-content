@@ -3,5 +3,6 @@
 slug=$1
 
 npx zenn new:article --slug $1 \
-&& mkdir ./.claude/$1/ && code ./.claude/$1/PLAN.md \
-&& echo -e "Created new:article and directory for CLC\n: $1"
+&& mkdir ./.claude/$1/ && mkdir ./images/$1/ \
+&& code ./.claude/$1/PLAN.md \
+&& echo -e "Created new:article and dir for images and CLC\n: $1"
