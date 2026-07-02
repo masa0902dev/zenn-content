@@ -1,5 +1,5 @@
 ---
-title: "vpnutil × Raycast × iPhone Shortcutsで, VPN接続の手間を減らす | 頻出操作はGUIを脱却しよう"
+title: "vpnutil × Raycast × iPhone Shortcutsで, VPN接続の手間を減らす"
 emoji: "📶"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["vpn", "macos", "raycast", "vpnutil", "iphone"]
