@@ -3,7 +3,7 @@ title: "VS Code の OS-level keyboard shortcuts を実機で検証してわか�
 emoji: "⌨️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["vscode", "electron", "macos", "claude-code"]
-published: false
+published: true
 ---
 
 VS Code 1.128 にて "OS-level keyboard shortcuts" という, VS Codeがフォーカスされていなくても発火するキーボードショートカットを登録できる機能が追加されました.
