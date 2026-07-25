@@ -3,7 +3,7 @@ title: "8月2日までに$100クレジットをもらってClaude Fable5を使�
 emoji: "💵"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["claude", "fable5"]
-published: false
+published: true
 ---
 
 # はじめに
