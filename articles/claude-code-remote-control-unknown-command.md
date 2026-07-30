@@ -42,7 +42,7 @@ Unknown command: /remote-control
 
 Remote Controlは, PC上で動いているClaude Codeのセッションに, [claude.ai/code](https://claude.ai/code) やスマホのClaudeアプリから接続して, 続きの操作ができる機能です.
 
-似た名前の機能として, コードをクラウドにアップロードして実行させる「Web上のClaude Code」もありますが, こちらはPCを閉じても処理が継続する代わりに, ローカルのファイルシステムには直接アクセスできません. 一方Remote Controlは, あくまでPC上のプロセスを遠隔操作するだけなので, PCを起動したままにしておく必要があります. この2つの機能はよく混同されるので注意して下さい.
+似た名前の機能として, コードをクラウドにアップロードして実行させる「Web上のClaude Code」もありますが, こちらはPCを閉じても処理が継続する代わりに, ローカルのファイルシステムには直接アクセスできません. 一方Remote Controlは, あくまでPC上のプロセスを遠隔操作するだけなので, PCを起動したままにしておく必要があります. この2つの機能はよく混同されるので注意してください.
 
 Remote Controlの起動方法は主に3通りあります.
 
@@ -80,7 +80,7 @@ because DISABLE_TELEMETRY is set. Unset it (or run in a shell without it) to
 use Remote Control.
 ```
 
-つまり, 対話セッション中のスラッシュコマンドでは詳細なエラーが隠蔽されて市立で`Unknown command`と表示されてしまう一方, CLIのサブコマンドとして実行すると, 本当の原因がエラーメッセージとして出てきます. `Unknown command` で行き詰まったときは, まずこのコマンドで原因を切り分けましょう.
+つまり, 対話セッション中のスラッシュコマンドでは詳細なエラーが隠蔽されて一律で`Unknown command`と表示されてしまう一方, CLIのサブコマンドとして実行すると, 本当の原因がエラーメッセージとして出てきます. `Unknown command` で行き詰まったときは, まずこのコマンドで原因を切り分けましょう.
 
 # 原因: feature-flag評価のブロック
 
