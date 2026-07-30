@@ -97,7 +97,7 @@ Remote Controlを使えるかどうかは, サーバー側のfeature-flagを評�
 
 - `DISABLE_GROWTHBOOK`
 
-一方, 筆者が実際に検証した際には, これらに加えて `DISABLE_ERROR_REPORTING` を設定している状態でも同様のエラーが発生しました(`DISABLE_GROWTHBOOK` は未設定だったため, 今回は確認できていません). 公式ドキュメントに明記された4つと, 実際に確認できた組み合わせが完全には一致していないため, バージョンや評価ロジックの詳細によって対象範囲が変わる可能性がある, という前提で読んでください.
+一方, 著者が実際に検証した際には, これらに加えて `DISABLE_ERROR_REPORTING` を設定している状態でも同様のエラーが発生しました(`DISABLE_GROWTHBOOK` は未設定だったため, 今回は確認できていません). 公式ドキュメントに明記された4つと, 実際に確認できた組み合わせが完全には一致していないため, バージョンや評価ロジックの詳細によって対象範囲が変わる可能性がある, という前提で読んでください.
 
 いずれにせよ, これらは名前の通り, テレメトリ送信・トラッキング・エラーレポート送信・非必須通信をそれぞれ無効化するための設定で, プライバシーを重視して意図的に設定しているケースが多いと思われます. 1つでも設定されていると他を外してもエラーが再現するため, 心当たりのあるものは全て解除する必要があります.
 
@@ -167,7 +167,7 @@ Claude Codeの `settings.json` はJSONCではなく通常のJSONとして扱わ�
 
 - `/remote-control` が `Unknown command` になる場合, まず `claude remote-control --help` を実行して, より詳しいエラーメッセージが出ないか確認する
 
-- `DISABLE_TELEMETRY` / `DO_NOT_TRACK` / `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` / `DISABLE_GROWTHBOOK` (公式ドキュメント記載) や `DISABLE_ERROR_REPORTING` (筆者の実機検証) が設定されていると, feature-flag評価がブロックされてRemote Controlが使えなくなる
+- `DISABLE_TELEMETRY` / `DO_NOT_TRACK` / `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` / `DISABLE_GROWTHBOOK` (公式ドキュメント記載) や `DISABLE_ERROR_REPORTING` (著者の実機検証) が設定されていると, feature-flag評価がブロックされてRemote Controlが使えなくなる
 
 - 解決するには, 心当たりのある環境変数をすべて解除する必要があり, プライバシー設定とのトレードオフになる
 
