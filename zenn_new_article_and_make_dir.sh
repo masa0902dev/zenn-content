@@ -3,8 +3,8 @@ set -eu # エラーが出たら止める, 未定義変数の参照はエラー�
 # error: slugの値（helloworld）が不正です。小文字の半角英数字（a-z0-9）、ハイフン（-）、アンダースコア（_）の12〜50字の組み合わせにしてください
 slug=$1
 
-npx zenn new:article --slug $1 \
-&& mkdir ./.claude/$1/ && mkdir ./images/$1/ \
-&& code ./.claude/$1/PLAN.md \
-&& code ./article/$1.md \
-&& echo -e "Created new:article and dir for images and CLC\n: $1"
+npx zenn new:article --slug $1
+code ./articles/$1.md
+mkdir ./.claude/$1/ && mkdir ./images/$1/
+touch ./.claude/$1/PLAN.md && code ./.claude/$1/PLAN.md
+echo -e "Created new:article and dir for images and CLC\n: $1"
