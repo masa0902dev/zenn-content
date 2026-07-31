@@ -3,7 +3,7 @@ title: "iPhoneの通知バッジを消して集中力を守ろう ~ メールを
 emoji: "🔕"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["iPhone", "通知", "生産性", "ライフハック"]
-published: false
+published: true
 ---
 
 iPhoneを開いた瞬間, **メールアプリのアイコンに赤いバッジ**が付いているのが目に入り, つい開いてしまった. そんな経験はないでしょうか.
