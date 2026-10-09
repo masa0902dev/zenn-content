@@ -3,7 +3,7 @@ title: "【macOS・VSCode】テキストカーソルの点滅を止めて思考�
 emoji: "✍️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["macos", "vscode", "生産性", "editor", "writing"]
-published: false
+published: true
 ---
 
 考えながらタイプする場面は毎日のようにあります. コードを書くとき・ドキュメントを書くとき・申請書を書くとき…など. そんなとき, 視界の中でテキストカーソルがチカチカと点滅していて, 気が散ったことはないでしょうか.
