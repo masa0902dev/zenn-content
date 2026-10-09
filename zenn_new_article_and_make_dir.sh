@@ -5,6 +5,6 @@ slug=$1
 
 npx zenn new:article --slug $1
 code ./articles/$1.md
-mkdir ./.claude/$1/ && mkdir ./images/$1/
-touch ./.claude/$1/PLAN.md && code ./.claude/$1/PLAN.md
+mkdir ./_claude_direction/$1/ && mkdir ./images/$1/
+touch ./_claude_direction/$1/PLAN.md && code ./_claude_direction/$1/PLAN.md
 echo -e "Created new:article and dir for images and CLC\n: $1"
