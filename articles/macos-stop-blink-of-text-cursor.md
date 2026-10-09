@@ -13,16 +13,16 @@ published: false
 **解決策はシンプルで, macOSの設定を1つオンにするだけです.** 実際に, ブリンクあり・なしでNotionにタイプしたときの様子を比べてみます↓
 
 **ブリンクあり**
-
 ![Notionでブリンクありの状態でタイプする様子](/images/macos-stop-blink-of-text-cursor/type-notion-blink.gif)
-
 **ブリンクなし**
-
 ![Notionでブリンクなしの状態でタイプする様子](/images/macos-stop-blink-of-text-cursor/type-notion-noblink.gif)
 
-ブリンクがないと, カーソルはただそこに「ある」だけになり, 視線を引っ張られなくなります.
+ブリンク無しなら, カーソルはただそこに「ある」だけになり, 視線を引っ張られなくなります.
+
+
 
 # macOSでブリンクを止める
+macOS Tahoe 26 にて確認:
 
 1. 「システム設定」を開く
 
@@ -32,21 +32,25 @@ published: false
 
 4. 「点滅しないカーソルを優先」をオンにする
 
-英語表示の場合は, System Settings > Accessibility > Motion > Prefer non-blinking cursor です.
+英語表示の場合は System Settings > Accessibility > Motion > Prefer non-blinking cursor.
 
 ![システム設定のMotion画面でPrefer non-blinking cursorをオンにした様子](/images/macos-stop-blink-of-text-cursor/settings-screen.jpg)
 
 これで, この設定に従うアプリではブリンクが止まります. 上で示したNotionの例も, この設定だけでブリンクが止まっています.
 
-なお, この画面はmacOS Tahoe 26のものです. macOS Sequoia 15では, 同じ項目が「アクセシビリティ」>「ディスプレイ」に「点滅しないカーソル優先」という名前で置かれています. (詳しくは後述の「ブリンク設定の歴史」を参照してください.)
+```message
+macOS Sequoia 15では, 同じ項目が「アクセシビリティ」>「ディスプレイ」に「点滅しないカーソル優先」という名前で置かれています. (詳しくは後述の「ブリンク設定の歴史」を参照してください.)
+```
 
 Apple公式のガイドは下記です.
 
 https://support.apple.com/ja-jp/guide/mac-help/mchla3c4f1da/mac
 
+
+
 # VSCodeでもブリンクを止める
 
-VSCodeのエディタ部分は, macOSの設定をオンにしてもブリンクが止まりません. エディタのカーソルをVSCodeが独自に描画しており, その点滅の仕方をVSCode自身の設定 `editor.cursorBlinking` が決めているためです. そこで, VSCode側でも設定します.
+VSCodeのエディタ部分は, macOSの設定をオンにしてもブリンクが止まりません. エディタのカーソルをVSCodeが独自に描画しており, その点滅の仕方をVSCode自身の設定が決めているためです. VSCode側でも設定しましょう.
 
 1. コマンドパレットを開く (shift cmd P)
 
@@ -66,23 +70,23 @@ VSCodeのエディタ部分は, macOSの設定をオンにしてもブリンク�
 
 `editor.cursorBlinking` には `blink` (既定値), `smooth`, `phase`, `expand`, `solid` の5種類があり, 点滅しないのは `solid` だけです. 他の4つは点滅のアニメーションの違いです.
 
-macOSの設定がオフで, VSCodeも既定値のままの場合と, 両方を設定した場合を比べると次のとおりです.
+macOSの設定がオフでVSCodeもblink設定のままの場合・両方を設定した場合, を比べると次のとおりです.
 
 **ブリンクあり**
-
 ![VSCodeでブリンクありの状態でタイプする様子](/images/macos-stop-blink-of-text-cursor/type-vscode-blink.gif)
-
 **ブリンクなし**
-
 ![VSCodeでブリンクなしの状態でタイプする様子](/images/macos-stop-blink-of-text-cursor/type-vscode-noblink.gif)
 
 VSCodeの統合ターミナルのカーソルは, 別の設定 `terminal.integrated.cursorBlinking` で制御されます. こちらは既定値が `false` (点滅しない) なので, 自分で変更していなければ設定は不要です.
 
 他にも, 独自にカーソルを描画するアプリ(エディタやターミナルなど)では, macOSの設定が効かないことがあります. その場合は, アプリ側に同様の設定がないか探してみてください.
 
+
+
 # ブリンク設定の歴史
 
-「点滅しないカーソルを優先」は, 昔からある設定ではありません.
+「点滅しないカーソルを優先」は, 昔からある設定ではなく, 私がmacOSを使い始めたタイミングではありませんでした.
+調べてみると, 下記のような歴史だそうです.
 
 - macOS Sonoma 14より前: システム設定に項目はなかった. ただし, ターミナルで下記の `defaults` コマンドを実行すると, Apple標準のテキスト部品を使うアプリのブリンクを実質的に止められた. (例えばmacOS Monterey 12.6.5で動作報告がある.)
 
@@ -97,7 +101,7 @@ VSCodeの統合ターミナルのカーソルは, 別の設定 `terminal.integra
 
 - macOS Tahoe 26: 同じ項目が「アクセシビリティ」>「視差効果」に置かれている.
 
-上記の `defaults` コマンドは現在のmacOSでは効果がないので, 実行する必要はありません. 設定画面からオンにしてください.
+※ 上記の `defaults` コマンドは現在のmacOSでは効果がないので, 実行する必要はありません. 設定画面からオンにしてください.
 
 コマンドの動作報告・Sonomaで効かなくなった報告は, 下記のフォーラムにあります.
 
@@ -113,6 +117,8 @@ https://misophoniainternational.com/?p=33472
 
 著者のように「なんとなく気になる」程度の人でも, オンにして損をする設定ではありません.
 
+
+
 # まとめ
 
 - macOSでは「システム設定」>「アクセシビリティ」>「視差効果」>「点滅しないカーソルを優先」をオンにすると, ブリンクが止まる.
@@ -121,4 +127,15 @@ https://misophoniainternational.com/?p=33472
 
 - この標準設定はmacOS Sequoia 15から使える.
 
-考えながら書く時間が長い人ほど, 効果を実感しやすいはずです. 設定は数秒で終わり, 気に入らなければ戻すのも一瞬なので, ぜひ一度試してみてください.
+自分はこれのおかげで, 研究により集中できるようになりました.
+
+考えることが多い人ほど, 効果を実感しやすいはずです. 設定は数秒で終わり, 気に入らなければ戻すのも一瞬なので, ぜひ一度試してみてください.
+
+## 宣伝📣 国際シンポジウムを11/24に開催します
+
+いわゆる国際会議です. NOREMIA Projectという国際共同研究のシンポジウムを, 名工大 (名古屋,鶴舞) にて行います.
+
+ご興味ある方は, ラボHPでの続報をお待ちください↓ もうそろそろ公式ページを公開予定です.
+
+https://csp.web.nitech.ac.jp/
+
