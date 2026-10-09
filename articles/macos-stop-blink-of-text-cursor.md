@@ -1,8 +1,8 @@
 ---
-title: "【macOS】テキストカーソルの点滅(ブリンク)を止めて思考に集中しよう"
+title: "【macOS・VSCode】テキストカーソルの点滅を止めて思考に集中しよう"
 emoji: "✍️"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["macos", "vscode", "cursor", "blink", "生産性"]
+topics: ["macos", "vscode", "生産性", "editor", "writing"]
 published: false
 ---
 
