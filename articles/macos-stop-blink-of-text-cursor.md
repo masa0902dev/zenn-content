@@ -1,8 +1,8 @@
 ---
-title: "【macOS・VSCode】テキストカーソルの点滅を止めて思考に集中しよう"
+title: "テキストカーソルの点滅を止めて思考に集中しよう【macOS・VSCode・Claude Code】"
 emoji: "✍️"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["macos", "vscode", "生産性", "editor", "writing"]
+topics: ["macos", "vscode", "claudecode", "生産性", "editor"]
 published: true
 ---
 
@@ -11,6 +11,8 @@ published: true
 - macOSの「システム設定」>「アクセシビリティ」>「視差効果」>「点滅しないカーソルを優先」をオンにする. 全アプリ共通の設定で, 多くのアプリはこれだけでブリンクが止まる.
 
 - VSCodeのように独自にカーソルを描画するアプリでは, アプリ側でも設定する. VSCodeなら `editor.cursorBlinking` を `solid` にする.
+
+- Claude Codeでは, 実行中に表示される「●」「✻」などの記号が点滅したりきらめいたりする (テキストカーソルではない). これはmacOSの設定では止まらないので, Claude Codeの設定 `prefersReducedMotion` を `true` にする.
 
 
 
@@ -94,6 +96,38 @@ VSCodeの統合ターミナルのカーソルは, 別の設定 `terminal.integra
 
 他にも, 独自にカーソルを描画するアプリ(エディタやターミナルなど)では, macOSの設定が効かないことがあります. その場合は, アプリ側に同様の設定がないか探してみてください.
 
+
+
+# Claude Codeでもアニメーションを減らす
+
+ターミナルでClaude Codeを使っていると, 作業中に「●」「✻」等の記号が切り替わり続けるスピナーや, 文字がきらめくように光る表示が出ます. テキストカーソルではありませんが, カーソルの点滅と同じく, 視界の中で動き続けるものです.
+
+少なくとも私の環境では, macOSの「点滅しないカーソルを優先」をオンにしても, Claude Codeはこの設定に従いませんでした. なのでClaude Code側でも設定しましょう.
+
+Claude Codeには, これらの動きを減らす設定 `prefersReducedMotion` があります. 私もローカルのmacOSでオンにしています. 設定は下記の通りです.
+
+- `~/.claude/settings.json` に `"prefersReducedMotion": true` を追記する.
+
+```json
+{
+  "prefersReducedMotion": true
+}
+```
+
+Claude Codeのチャットからも, 下記のように設定できます.
+
+- Claude Code上で `/config` を開き, "Reduce motion" をオンにする.
+
+公式ドキュメントでは, この設定は「スピナー, シマー (文字のきらめき), フラッシュ等のインターフェースのアニメーションを減らす, またはオフにする」ものと説明されています. (既定値は`false`)
+
+実際に私の環境でオンにしたところ, Claude Codeの実行中にチャット画面に表示される「●」「✻」等の記号の点滅やきらめきが止まりました.
+
+https://code.claude.com/docs/en/settings-reference#prefersreducedmotion
+
+:::message
+Ghostty (1.2.0以降) やiTerm2 (3.6.6以降) などのターミナルでは, Claude Codeの作業中にタブなどへ進捗表示 (プログレスバー) も出ます. これは `prefersReducedMotion` とは別の設定 `terminalProgressBarEnabled` で制御され, `false` にすると表示されなくなります.
+:::
+
 ## 他のアプリでの設定例
 
 VSCode以外のエディタ・ターミナルについて, 公式ドキュメントに記載されている設定をまとめました.
@@ -159,6 +193,8 @@ https://misophoniainternational.com/?p=33472
 - macOSでは「システム設定」>「アクセシビリティ」>「視差効果」>「点滅しないカーソルを優先」をオンにすると, ブリンクが止まる.
 
 - VSCodeのエディタは別途 `editor.cursorBlinking` を `solid` にする必要がある.
+
+- Claude Codeは別途 `prefersReducedMotion` を `true` にすると, 実行中の記号の点滅やきらめきが止まる.
 
 - この標準設定はmacOS Sequoia 15から使える.
 
