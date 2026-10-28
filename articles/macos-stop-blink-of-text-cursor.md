@@ -128,29 +128,6 @@ https://code.claude.com/docs/en/settings-reference#prefersreducedmotion
 Ghostty (1.2.0以降) やiTerm2 (3.6.6以降) などのターミナルでは, Claude Codeの作業中にタブなどへ進捗表示 (プログレスバー) も出ます. これは `prefersReducedMotion` とは別の設定 `terminalProgressBarEnabled` で制御され, `false` にすると表示されなくなります.
 :::
 
-## 他のアプリでの設定例
-
-VSCode以外のエディタ・ターミナルについて, 公式ドキュメントに記載されている設定をまとめました.
-
-| アプリ                            | 設定                                                                                                                                                                        |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Cursor                            | VSCodeのコードベースを元にしているので, VSCodeと同じく "Editor: Cursor Blinking" を "solid" にする. 設定画面はコマンドパレットの "Preferences: Open Settings (UI)" で開ける |
-| JetBrains IDE (IntelliJ IDEAなど) | Settings > Editor > General > Appearance の "Caret blinking (ms)" をオフにする                                                                                              |
-| iTerm2                            | Settings > Profiles > Text の Cursor 欄にある "Blink" をオフにする                                                                                                          |
-| Warp                              | 個別設定は不要 (macOSの設定だけで止まった). アプリ側にも Settings > Appearance > Cursor に "Blinking cursor" の切り替えがある                                               |
-
-:::message
-Warp以外は実機で試していません. 公式ドキュメントの情報をもとにしています.
-:::
-
-https://cursor.com/docs/configuration/migrations/vscode
-
-https://www.jetbrains.com/help/idea/settings-editor-appearance.html
-
-https://iterm2.com/documentation-preferences-profiles-text.html
-
-https://docs.warp.dev/terminal/appearance/text-fonts-cursor
-
 
 
 # ブリンク設定の歴史
